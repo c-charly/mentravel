@@ -1,0 +1,42 @@
+services:
+  app:
+    build:
+      context: .
+      args:
+        NUXT_PUBLIC_SITE_URL: ${NUXT_PUBLIC_SITE_URL:-http://localhost:3000}
+    restart: unless-stopped
+    environment:
+      NUXT_PUBLIC_SITE_URL: ${NUXT_PUBLIC_SITE_URL:-http://localhost:3000}
+      NUXT_PUBLIC_I18N_BASE_URL: ${NUXT_PUBLIC_SITE_URL:-http://localhost:3000}
+      NUXT_PUBLIC_WHATSAPP_NUMBER: ${NUXT_PUBLIC_WHATSAPP_NUMBER:-237653677443}
+      NUXT_ALLOW_SIM: ${NUXT_ALLOW_SIM:-true}
+      NUXT_DATA_DIR: /data
+    volumes:
+      - mt-data:/data
+    expose:
+      - "3000"
+
+  dev:
+    profiles: ["dev"]
+    image: node:24-alpine
+    working_dir: /app
+    command: sh -c "npm install -g pnpm@12 && pnpm install && pnpm dev --host 0.0.0.0"
+    environment:
+      NUXT_TELEMETRY_DISABLED: "1"
+      NODE_ENV: development
+    env_file:
+      - .env
+    ports:
+      - '${PORT:-3000}:${PORT:-3000}'
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+      - pnpm-store:/pnpm/store
+
+volumes:
+  mt-data:
+  node_modules:
+  pnpm-store:
+    external: true
+    name: pnpm-store-shared
+

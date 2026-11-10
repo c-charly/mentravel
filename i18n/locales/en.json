@@ -1,0 +1,527 @@
+{
+  "brand": {
+    "signature": "A different vision of travel"
+  },
+  "common": {
+    "retry": "Try again",
+    "offline": "No connection. Check your network and try again."
+  },
+  "nav": {
+    "home": "MEN TRAVEL home",
+    "main": "Main navigation",
+    "menu": "Menu",
+    "close": "Close",
+    "skip": "Skip to content",
+    "book": "Book",
+    "routes": "Routes",
+    "classes": "Classes",
+    "onboard": "On board",
+    "parcels": "Parcels",
+    "charter": "Bus hire",
+    "myTrip": "My trip",
+    "verify": "Verify a ticket",
+    "help": "Help",
+    "about": "About",
+    "switchLang": "Switch to French",
+    "lightMode": "Switch to light theme",
+    "nightMode": "Switch to night theme"
+  },
+  "whatsapp": {
+    "label": "Message us on WhatsApp",
+    "hello": "Hello MEN TRAVEL, I have a question."
+  },
+  "footer": {
+    "terminus": "Terminus. You have arrived.",
+    "thanks": "Thank you for travelling with us.",
+    "contact": "Contact",
+    "travel": "Travel",
+    "info": "Information",
+    "pay": "Payment",
+    "payNote": "Pay from your phone, no bank card needed.",
+    "madeIn": "Made with care in Cameroon.",
+    "terms": "Terms of sale",
+    "baggage": "Baggage and cancellation",
+    "privacy": "Privacy",
+    "about": "About",
+    "help": "Help and contact",
+    "blurb": "Comfortable buses between Yaoundé, Douala and Kribi.",
+    "services": "Services"
+  },
+  "calendar": {
+    "title": "Pick your day",
+    "titleReturn": "Pick your return day",
+    "shortcuts": "Date shortcuts",
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "weekend": "This weekend",
+    "filter": "Filter by class",
+    "allClasses": "All classes",
+    "howTo": "Each bar is a departure. The taller it is, the more seats are left. Patterns show the class.",
+    "full": "Sold out",
+    "tight": "Few seats left",
+    "none": "no departures",
+    "noneShort": "No departures",
+    "unavailable": "unavailable",
+    "departures": "{n} departure | {n} departures",
+    "seatsLeft": "{n} seat | {n} seats",
+    "errorTitle": "Could not load the calendar",
+    "errorText": "Check your connection. Your choices are kept.",
+    "previewHint": "Hover a day to see its departure times."
+  },
+  "schedule": {
+    "title": "Departures of the day",
+    "arrives": "arrives",
+    "lastSeats": "Last seats",
+    "errorTitle": "Could not load departures",
+    "emptyTitle": "No departures to show",
+    "emptyFilter": "No departure offers this class on that day.",
+    "emptyDay": "No more departures that day. Pick another day."
+  },
+  "plan": {
+    "label": "Bus seat plan",
+    "legend": "Plan legend",
+    "front": "Front of the bus",
+    "seat": "Seat",
+    "free": "Free",
+    "selected": "Selected",
+    "taken": "Taken",
+    "held": "Held for someone",
+    "yours": "Your seat"
+  },
+  "booking": {
+    "seoTitle": "Book a bus ticket",
+    "seoDescription": "Book your bus seat between Yaoundé, Douala and Kribi in moments and pay with Orange Money or MTN MoMo.",
+    "phraseFrom": "I'm leaving from",
+    "phraseTo": "to",
+    "phraseReturn": "I'm coming back from {from} to {to}",
+    "changeCity": "Change city",
+    "swap": "Reverse the trip",
+    "swapHint": "Choosing this city reverses the trip",
+    "pickFrom": "Which city are you leaving from?",
+    "pickTo": "Which city are you going to?",
+    "addReturn": "Add the return",
+    "saveUpTo": "Save up to {amount}",
+    "outbound": "Outbound",
+    "inbound": "Return",
+    "progress": "Booking progress",
+    "stepOf": "Step {n} of {total}",
+    "steps": {
+      "date": "Date",
+      "horaire": "Time",
+      "sieges": "Seats",
+      "titulaire": "Passenger",
+      "paiement": "Payment",
+      "billet": "Done"
+    },
+    "titleDate": "Pick the date",
+    "titleReturn": "Pick the return date",
+    "titleSchedule": "Pick time and class",
+    "titleSeats": "Choose your seats",
+    "titleHolder": "Who is travelling?",
+    "titlePay": "Payment",
+    "titleDone": "Your ticket",
+    "changeDate": "Change date",
+    "changeSchedule": "Change time",
+    "seatsIntro": "Tap a seat to choose it. Up to {n} seats per booking, held for 10 minutes.",
+    "seatsTaken": "Seats {seats} were just taken. Please choose others.",
+    "seatsLimit": "You can choose {n} seats at most.",
+    "seatsError": "Could not load the seat plan.",
+    "seatsChosen": "{n} seat chosen | {n} seats chosen",
+    "noSeat": "No seat chosen",
+    "perSeat": "per seat",
+    "continue": "Continue",
+    "chooseReturn": "Choose the return",
+    "yourTicket": "Your ticket",
+    "toChoose": "to choose",
+    "toFill": "to fill in",
+    "reassure": "No account needed. Your seats are held for 10 minutes.",
+    "holdTimer": "Time left for your seats",
+    "timeLeft": "You have {time} left to finish.",
+    "paymentRunning": "Payment in progress",
+    "expiredShort": "Your selection has expired.",
+    "expiredTitle": "Your selection has expired",
+    "expiredText": "The seats were released for other travellers. We can try to take the same seats again.",
+    "resume": "Take the same seats again",
+    "chooseAgain": "Choose again",
+    "leave": "Leave the booking",
+    "leaveTitle": "Leave the booking?",
+    "leaveText": "Your held seats will be released.",
+    "stay": "Stay",
+    "leaveConfirm": "Leave",
+    "tripType": "Trip type",
+    "oneWay": "One way",
+    "whereWhen": "Where and when are you travelling?",
+    "returnWhen": "And for the return?"
+  },
+  "holder": {
+    "title": "Who is travelling?",
+    "intro": "One passenger is enough for your seat. | One passenger is enough for your {n} seats.",
+    "lastName": "Last name",
+    "firstName": "First name",
+    "phone": "Phone number",
+    "phoneHint": "So we can reach you if a departure changes.",
+    "idType": "ID document",
+    "idTypes": {
+      "cni": "ID card",
+      "passport": "Passport",
+      "other": "Other document"
+    },
+    "idNumber": "Document number",
+    "idHint": "It protects your ticket: only the holder can view it in full.",
+    "errName": "Enter at least 2 letters.",
+    "errPhone": "Cameroon number with 9 digits, starting with 6.",
+    "errId": "Enter 5 to 20 letters or digits.",
+    "continue": "Continue to payment",
+    "errDeparted": "This departure is no longer available. Pick another time.",
+    "errGeneric": "The booking could not be saved. Try again."
+  },
+  "pay": {
+    "title": "Mobile Money payment",
+    "intro": "You will get a confirmation request on your phone.",
+    "number": "Mobile Money number",
+    "numberHint": "Orange Money or MTN MoMo, detected automatically.",
+    "errNumber": "Cameroon number with 9 digits, starting with 6.",
+    "errOperator": "This number is neither Orange Money nor MTN MoMo.",
+    "errExpired": "The hold on your seats has expired.",
+    "errGeneric": "The payment could not start. Try again.",
+    "cta": "Pay {amount}",
+    "back": "Edit my details",
+    "noPrompt": "No request on your phone?",
+    "ussdText": "Dial the {op} code to open your menu, then approve the pending payment:",
+    "waitTitle": "Confirm on your phone",
+    "waitText": "A request for {amount} was just sent to your {op} account. Enter your secret code to confirm.",
+    "cancel": "Cancel",
+    "checkAgain": "Check the payment",
+    "retry": "Try the payment again",
+    "chooseOther": "Choose other seats",
+    "helpWhatsapp": "Help on WhatsApp",
+    "fail": {
+      "failed": {
+        "title": "Payment declined",
+        "text": "Nothing was charged. Your seats are still held, you can try again."
+      },
+      "timeout": {
+        "title": "Time ran out",
+        "text": "We did not receive your confirmation. If an amount was charged it will be confirmed automatically. Otherwise, try again."
+      },
+      "lost": {
+        "title": "Connection lost",
+        "text": "We can no longer reach the server. Your payment is not lost: check its status as soon as the network is back."
+      },
+      "seats_lost": {
+        "title": "Seats no longer available",
+        "text": "Your seats were taken during the payment. No ticket was issued. Please choose other seats."
+      }
+    }
+  },
+  "done": {
+    "title": "You're booked.",
+    "text": "Here is your ticket. Keep it on your phone: it stays readable even offline. Arrive 30 minutes before departure.",
+    "again": "New booking",
+    "home": "Back to home",
+    "fetchFailed": "Your payment is recorded, but the ticket could not be shown. Find it with your PNR."
+  },
+  "ticket": {
+    "aria": "Ticket {pnr}",
+    "pageTitle": "Ticket",
+    "pnr": "PNR reference",
+    "date": "Date",
+    "time": "Time",
+    "departure": "Departure",
+    "arrival": "Arrival",
+    "duration": "Duration",
+    "seats": "Seats",
+    "passengers": "Passengers",
+    "class": "Class",
+    "holder": "Holder",
+    "phone": "Phone",
+    "idNumber": "ID document",
+    "total": "Total",
+    "paid": "Amount paid",
+    "amountDue": "Amount due",
+    "hidden": "Hidden information",
+    "maskedNote": "Sensitive details are hidden. Unlock the ticket to see everything.",
+    "boardingNote": "Show the QR code or your PNR when boarding.",
+    "qrAlt": "Ticket verification QR code",
+    "downloadPdf": "Download as PDF",
+    "downloadImage": "Save as image",
+    "shareWhatsapp": "Share on WhatsApp",
+    "copyLink": "Copy link",
+    "addCalendar": "Add to my calendar",
+    "linkCopied": "Link copied.",
+    "shareText": "My MEN TRAVEL ticket {pnr}: {url}",
+    "badLink": "This link is no longer valid. Unlock the ticket with your ID document.",
+    "offlineNote": "You are offline. This is the last saved state of your ticket."
+  },
+  "journey": {
+    "title": "Your journey",
+    "current": "current step",
+    "reserved": "Booked",
+    "paid": "Paid",
+    "boarding": "Boarding",
+    "enroute": "On the road",
+    "arrived": "Arrived"
+  },
+  "unlock": {
+    "title": "See the full ticket",
+    "text": "Enter the holder's ID document number to show their name and phone.",
+    "label": "ID document number",
+    "hint": "ID card, passport or other document used for the booking.",
+    "errInvalid": "This number does not match. After several tries, access is blocked for a few minutes.",
+    "errEmpty": "Enter the document number.",
+    "errLocked": "Too many tries. Try again in {n} min.",
+    "cta": "Unlock"
+  },
+  "verify": {
+    "seoTitle": "Verify a ticket",
+    "seoDescription": "Check that a MEN TRAVEL ticket is genuine using its PNR.",
+    "title": "Verify a ticket",
+    "intro": "Enter the ticket PNR. You will see the route, time and seats, without any personal information.",
+    "pnrLabel": "PNR reference",
+    "pnrHint": "Format MT-XXXXXX-XXXX. Pasting works.",
+    "errFormat": "A PNR looks like MT-K7N2QX-4HDM.",
+    "cta": "Verify",
+    "privacy": "Name, phone and ID number stay hidden for anyone who does not hold the ticket.",
+    "another": "Verify another ticket",
+    "tryAgain": "Try another PNR",
+    "unknownTitle": "Ticket not found",
+    "unknownText": "No ticket matches this reference. Check every character, or contact the agency.",
+    "throttled": "Too many checks in a short time. Wait a minute.",
+    "errorTitle": "Verification failed",
+    "yourSeats": "The ticket's seats",
+    "seatsLeft": "{n} of {total} free",
+    "stamp": {
+      "authentic": "Genuine",
+      "used": "Already used",
+      "cancelled": "Cancelled",
+      "pending": "Awaiting payment",
+      "unknown": "Unknown"
+    }
+  },
+  "trip": {
+    "seoTitle": "My trip",
+    "seoDescription": "Follow your booking and find your ticket with your PNR.",
+    "title": "My trip",
+    "intro": "Find your ticket with its PNR. To see the name and phone, you will confirm with your ID document.",
+    "cta": "Find my ticket",
+    "saved": "Tickets on this device"
+  },
+  "home": {
+    "seoTitle": "Buses Yaoundé, Douala, Kribi",
+    "seoDescription": "Book your bus seat between Yaoundé, Douala and Kribi. From 5,000 FCFA, Orange Money and MTN MoMo payment, verifiable ticket.",
+    "citiesTitle": "The three cities of the line",
+    "leaveFrom": "Leave from {city}",
+    "classesTitle": "Three classes, one comfort: yours.",
+    "fromPrice": "from",
+    "tryDemo": "Try with a demo ticket",
+    "allRoutes": "All lines",
+    "lineTitle": "The MEN TRAVEL line"
+  },
+  "legal": {
+    "contactUs": "A question? Contact us",
+    "termsTitle": "Terms of sale",
+    "termsDescription": "Ticket sale terms for MEN TRAVEL.",
+    "termsIntro": "Eight sections, written plainly.",
+    "baggageTitle": "Baggage and cancellation",
+    "baggageDescription": "Included baggage, cancellation, changes and missed bus at MEN TRAVEL.",
+    "baggageIntro": "What is included, and what happens if your plans change.",
+    "privacyTitle": "Privacy",
+    "privacyDescription": "How MEN TRAVEL protects your personal data.",
+    "privacyIntro": "Your details are only used to issue and protect your ticket."
+  },
+  "about": {
+    "seoTitle": "About"
+  },
+  "help": {
+    "seoTitle": "Help and contact",
+    "seoDescription": "Answers to common questions and MEN TRAVEL contacts: phone, WhatsApp, e-mail and agencies.",
+    "title": "Need help?",
+    "lead": "An answer in seconds, or a real person from 6am to 10pm.",
+    "search": "Search for an answer",
+    "searchPlaceholder": "Baggage, payment, cancellation...",
+    "noResult": "No answer matches. Message us on WhatsApp, we reply fast.",
+    "mailNote": "Reply within 24 hours"
+  },
+  "classesPage": {
+    "seoTitle": "Travel classes"
+  },
+  "onboard": {
+    "seoTitle": "On board",
+    "prev": "See previous",
+    "next": "See next"
+  },
+  "routes": {
+    "seoTitle": "Routes and fares",
+    "seoDescription": "The six MEN TRAVEL lines between Yaoundé, Douala and Kribi, with durations, fares and timetables.",
+    "title": "Routes",
+    "lead": "Three cities, six lines, timetables that repeat every day.",
+    "mapLabel": "Map of three cities linked by three lines",
+    "mapHint": "Tap a line to see its timetable.",
+    "fares": "Fares by class",
+    "line": "Line",
+    "roundTrip": "Round trip",
+    "bothWays": "Every line runs both ways, at the same fares and the same times."
+  },
+  "line": {
+    "seoTitle": "Bus {from} to {to} from {price}",
+    "seoDescription": "Bus {from} to {to}: {km} km, {duration}. Timetable, fares by class and online booking.",
+    "distance": "Distance",
+    "duration": "Duration",
+    "boarding": "Boarding",
+    "arrival": "Arrival",
+    "book": "Book this route",
+    "times": "Departure times",
+    "timesHint": "MasterClass departures also offer Business.",
+    "toWord": "to"
+  },
+  "error": {
+    "title404": "This page is not on the line",
+    "text404": "The address may be wrong, or the page changed platform. Go back home or book directly.",
+    "title500": "An unplanned stop",
+    "text500": "Something went wrong on our side. Try again in a moment.",
+    "home": "Back to home"
+  },
+  "parcels": {
+    "seoTitle": "Parcel service",
+    "seoDescription": "Send a parcel between Yaoundé, Douala and Kribi: drop it at an agency, the recipient collects it on arrival.",
+    "title": "Send a parcel",
+    "lead": "It travels on our buses, the same day, and you follow every step.",
+    "tabSend": "Send",
+    "tabTrack": "Track a parcel",
+    "step1": {
+      "title": "Fill in the request",
+      "text": "Sender, parcel and recipient, on one page."
+    },
+    "step2": {
+      "title": "Drop it at the agency",
+      "text": "At Nylon Bastos (Yaoundé) or a partner agency."
+    },
+    "step3": {
+      "title": "Collected on arrival",
+      "text": "The recipient is notified and collects the parcel at the agency."
+    },
+    "sender": "Sender",
+    "parcel": "Parcel and route",
+    "receiver": "Recipient",
+    "fullName": "Full name",
+    "email": "E-mail (optional)",
+    "kind": "Parcel type",
+    "kinds": {
+      "document": {
+        "name": "Document",
+        "hint": "Envelope"
+      },
+      "small": {
+        "name": "Small parcel",
+        "hint": "Up to 5 kg"
+      },
+      "medium": {
+        "name": "Medium parcel",
+        "hint": "5 to 20 kg"
+      },
+      "large": {
+        "name": "Large parcel",
+        "hint": "20 kg and over"
+      }
+    },
+    "weight": "Estimated weight (kg)",
+    "sendDate": "Preferred sending date",
+    "from": "Departure city",
+    "to": "Arrival city",
+    "declared": "Declared value in FCFA (optional)",
+    "estimate": "Estimated fare",
+    "estimateNote": "The final fare is confirmed at the agency when you drop the parcel.",
+    "notes": "Contents and instructions (optional)",
+    "forbidden": "Forbidden: dangerous goods, cash, unpackaged perishables.",
+    "errGeneric": "The request could not be sent. Try again.",
+    "submit": "Send my request",
+    "doneTitle": "Request recorded",
+    "doneText": "Drop the parcel at the agency with this tracking number.",
+    "trackingId": "Tracking number",
+    "followIt": "Track this parcel",
+    "another": "Make another request",
+    "trackCta": "Track",
+    "unknown": "Number not found. Expected format: CL-XXXXXXXX.",
+    "receiverIs": "Recipient:",
+    "stage": {
+      "registered": "Request recorded",
+      "dropped": "Dropped at the agency",
+      "onboard": "On the bus",
+      "arrived": "Arrived at the agency",
+      "delivered": "Collected by the recipient"
+    }
+  },
+  "charter": {
+    "seoTitle": "Bus hire",
+    "seoDescription": "Hire a 15 to 70 seat coach for your group. Free quote, no obligation, reply within 24 working hours.",
+    "kicker": "Bus hire, from 15 to 70 seats",
+    "progress": "Quote request progress",
+    "q": {
+      "kind": "What kind of trip?",
+      "passengers": "How many passengers?",
+      "route": "From where to where?",
+      "dates": "When?",
+      "details": "A word about the occasion?",
+      "contact": "How can we reach you?",
+      "recap": "Shall we recap?",
+      "done": "Request sent"
+    },
+    "hint": {
+      "kind": "One way, a round trip, or a bus at your disposal.",
+      "passengers": "We choose the bus size for you.",
+      "route": "A city, a district, a venue: write it the way you would say it.",
+      "dates": "The departure date and, if needed, the return.",
+      "details": "Wedding, seminar, excursion... and anything that helps us.",
+      "contact": "We reply within 24 working hours.",
+      "recap": "Check, then send. It is free and without obligation."
+    },
+    "kinds": {
+      "one-way": {
+        "name": "One way",
+        "text": "One trip, one direction."
+      },
+      "round-trip": {
+        "name": "Round trip",
+        "text": "The bus brings you back."
+      },
+      "charter": {
+        "name": "At your disposal",
+        "text": "By the day or over several days."
+      }
+    },
+    "less": "Remove 5 passengers",
+    "more": "Add 5 passengers",
+    "sizes": "Bus sizes",
+    "seats": "seats",
+    "suggest": "We plan {n} bus of {size} seats. | We plan {n} buses of {size} seats.",
+    "fromPlace": "Departure place",
+    "toPlace": "Destination",
+    "startDate": "Departure date",
+    "returnDate": "Return date",
+    "lastDay": "Last day",
+    "occasion": "Occasion (optional)",
+    "occasionPh": "Wedding, seminar, excursion",
+    "notes": "Details (optional)",
+    "errStep": "Complete this field to continue.",
+    "back": "Back",
+    "send": "Send the quote request",
+    "passengers": "Passengers",
+    "route": "Route",
+    "dates": "Dates",
+    "contact": "Contact",
+    "reference": "Request reference",
+    "doneText": "We will reply with a personalised quote within 24 working hours.",
+    "estimateTitle": "Indicative estimate",
+    "to": "to",
+    "estimateNote": "{n} bus of {size} seats. The final quote accounts for your times and the road."
+  },
+  "search": {
+    "from": "From",
+    "to": "To",
+    "date": "Date",
+    "cta": "Search",
+    "swap": "Reverse the trip",
+    "nextToday": "Next departures today, {from} to {to}:",
+    "seats": "{n} seat | {n} seats"
+  }
+}

@@ -1,0 +1,527 @@
+{
+  "brand": {
+    "signature": "Une autre vision du voyage"
+  },
+  "common": {
+    "retry": "Réessayer",
+    "offline": "Connexion indisponible. Vérifiez votre réseau puis réessayez."
+  },
+  "nav": {
+    "home": "Accueil MEN TRAVEL",
+    "main": "Navigation principale",
+    "menu": "Menu",
+    "close": "Fermer",
+    "skip": "Aller au contenu",
+    "book": "Réserver",
+    "routes": "Trajets",
+    "classes": "Classes",
+    "onboard": "À bord",
+    "parcels": "Colis",
+    "charter": "Location de bus",
+    "myTrip": "Mon voyage",
+    "verify": "Vérifier un billet",
+    "help": "Aide",
+    "about": "À propos",
+    "switchLang": "Passer en anglais",
+    "lightMode": "Passer au thème clair",
+    "nightMode": "Passer au thème nuit"
+  },
+  "whatsapp": {
+    "label": "Écrire sur WhatsApp",
+    "hello": "Bonjour MEN TRAVEL, j'ai une question."
+  },
+  "footer": {
+    "terminus": "Terminus. Vous êtes arrivé.",
+    "thanks": "Merci d'avoir voyagé avec nous.",
+    "contact": "Contact",
+    "travel": "Voyager",
+    "info": "Informations",
+    "pay": "Paiement",
+    "payNote": "Payez depuis votre téléphone, sans carte bancaire.",
+    "madeIn": "Fait avec soin au Cameroun.",
+    "terms": "Conditions générales",
+    "baggage": "Bagages et annulation",
+    "privacy": "Confidentialité",
+    "about": "À propos",
+    "help": "Aide et contact",
+    "blurb": "Bus confortables entre Yaoundé, Douala et Kribi.",
+    "services": "Services"
+  },
+  "calendar": {
+    "title": "Choisissez votre jour",
+    "titleReturn": "Choisissez votre jour de retour",
+    "shortcuts": "Raccourcis de date",
+    "today": "Aujourd'hui",
+    "tomorrow": "Demain",
+    "weekend": "Ce week-end",
+    "filter": "Filtrer par classe",
+    "allClasses": "Toutes les classes",
+    "howTo": "Chaque barre est un départ. Plus elle est haute, plus il reste de places. Les motifs indiquent la classe.",
+    "full": "Complet",
+    "tight": "Peu de places",
+    "none": "aucun départ",
+    "noneShort": "Aucun départ",
+    "unavailable": "indisponible",
+    "departures": "{n} départ | {n} départs",
+    "seatsLeft": "{n} place | {n} places",
+    "errorTitle": "Impossible de charger le calendrier",
+    "errorText": "Vérifiez votre connexion. Vos choix sont conservés.",
+    "previewHint": "Survolez un jour pour voir ses horaires."
+  },
+  "schedule": {
+    "title": "Horaires du jour",
+    "arrives": "arrive",
+    "lastSeats": "Dernières places",
+    "errorTitle": "Impossible de charger les horaires",
+    "emptyTitle": "Aucun départ à afficher",
+    "emptyFilter": "Aucun départ ne propose cette classe ce jour-là.",
+    "emptyDay": "Plus de départ ce jour-là. Choisissez un autre jour."
+  },
+  "plan": {
+    "label": "Plan du bus",
+    "legend": "Légende du plan",
+    "front": "Avant du bus",
+    "seat": "Siège",
+    "free": "Libre",
+    "selected": "Choisi",
+    "taken": "Occupé",
+    "held": "Réservé en cours",
+    "yours": "Votre siège"
+  },
+  "booking": {
+    "seoTitle": "Réserver un billet de bus",
+    "seoDescription": "Réservez votre place en bus entre Yaoundé, Douala et Kribi en quelques instants, payez par Orange Money ou MTN MoMo.",
+    "phraseFrom": "Je pars de",
+    "phraseTo": "vers",
+    "phraseReturn": "Je reviens de {from} vers {to}",
+    "changeCity": "Changer de ville",
+    "swap": "Inverser le trajet",
+    "swapHint": "Choisir cette ville inverse le trajet",
+    "pickFrom": "Je pars de quelle ville ?",
+    "pickTo": "Je vais vers quelle ville ?",
+    "addReturn": "Ajouter le retour",
+    "saveUpTo": "Jusqu'à {amount} d'économie",
+    "outbound": "Aller",
+    "inbound": "Retour",
+    "progress": "Progression de la réservation",
+    "stepOf": "Étape {n} sur {total}",
+    "steps": {
+      "date": "Date",
+      "horaire": "Horaire",
+      "sieges": "Sièges",
+      "titulaire": "Titulaire",
+      "paiement": "Paiement",
+      "billet": "Terminé"
+    },
+    "titleDate": "Choisir la date",
+    "titleReturn": "Choisir la date de retour",
+    "titleSchedule": "Choisir l'horaire et la classe",
+    "titleSeats": "Choisissez vos sièges",
+    "titleHolder": "Qui voyage ?",
+    "titlePay": "Paiement",
+    "titleDone": "Votre billet",
+    "changeDate": "Changer de date",
+    "changeSchedule": "Changer d'horaire",
+    "seatsIntro": "Touchez un siège pour le choisir. Jusqu'à {n} sièges par réservation, retenus pendant 10 minutes.",
+    "seatsTaken": "Les sièges {seats} viennent d'être pris. Choisissez-en d'autres.",
+    "seatsLimit": "Vous pouvez choisir {n} sièges au maximum.",
+    "seatsError": "Impossible de charger le plan du bus.",
+    "seatsChosen": "{n} siège choisi | {n} sièges choisis",
+    "noSeat": "Aucun siège choisi",
+    "perSeat": "par siège",
+    "continue": "Continuer",
+    "chooseReturn": "Choisir le retour",
+    "yourTicket": "Votre billet",
+    "toChoose": "à choisir",
+    "toFill": "à renseigner",
+    "reassure": "Aucun compte à créer. Vos sièges sont retenus pendant 10 minutes.",
+    "holdTimer": "Temps restant pour vos sièges",
+    "timeLeft": "Il vous reste {time} pour finaliser.",
+    "paymentRunning": "Paiement en cours",
+    "expiredShort": "Votre sélection a expiré.",
+    "expiredTitle": "Votre sélection a expiré",
+    "expiredText": "Les sièges ont été libérés pour les autres voyageurs. Nous pouvons essayer de reprendre les mêmes sièges.",
+    "resume": "Reprendre les mêmes sièges",
+    "chooseAgain": "Choisir à nouveau",
+    "leave": "Quitter la réservation",
+    "leaveTitle": "Quitter la réservation ?",
+    "leaveText": "Vos sièges retenus seront libérés.",
+    "stay": "Rester",
+    "leaveConfirm": "Quitter",
+    "tripType": "Type de voyage",
+    "oneWay": "Aller simple",
+    "whereWhen": "Où et quand voyagez-vous ?",
+    "returnWhen": "Et pour le retour ?"
+  },
+  "holder": {
+    "title": "Qui voyage ?",
+    "intro": "Un seul titulaire suffit pour votre siège. | Un seul titulaire suffit pour vos {n} sièges.",
+    "lastName": "Nom",
+    "firstName": "Prénom",
+    "phone": "Numéro de téléphone",
+    "phoneHint": "Pour vous joindre en cas de changement de départ.",
+    "idType": "Pièce d'identité",
+    "idTypes": {
+      "cni": "Carte d'identité",
+      "passport": "Passeport",
+      "other": "Autre pièce"
+    },
+    "idNumber": "Numéro de la pièce",
+    "idHint": "Il protège votre billet: seul le titulaire peut le consulter en entier.",
+    "errName": "Saisissez au moins 2 lettres.",
+    "errPhone": "Numéro camerounais à 9 chiffres, commençant par 6.",
+    "errId": "Saisissez 5 à 20 lettres ou chiffres.",
+    "continue": "Continuer vers le paiement",
+    "errDeparted": "Ce départ n'est plus disponible. Choisissez un autre horaire.",
+    "errGeneric": "La réservation n'a pas pu être enregistrée. Réessayez."
+  },
+  "pay": {
+    "title": "Paiement Mobile Money",
+    "intro": "Vous recevrez une demande de validation sur votre téléphone.",
+    "number": "Numéro Mobile Money",
+    "numberHint": "Orange Money ou MTN MoMo, détecté automatiquement.",
+    "errNumber": "Numéro camerounais à 9 chiffres, commençant par 6.",
+    "errOperator": "Ce numéro n'est ni Orange Money ni MTN MoMo.",
+    "errExpired": "La retenue de vos sièges a expiré.",
+    "errGeneric": "Le paiement n'a pas pu démarrer. Réessayez.",
+    "cta": "Payer {amount}",
+    "back": "Modifier mes informations",
+    "noPrompt": "Pas de demande sur votre téléphone ?",
+    "ussdText": "Composez le code {op} pour ouvrir votre menu, puis validez le paiement en attente:",
+    "waitTitle": "Validez sur votre téléphone",
+    "waitText": "Une demande de {amount} vient d'être envoyée sur votre compte {op}. Saisissez votre code secret pour confirmer.",
+    "cancel": "Annuler",
+    "checkAgain": "Vérifier le paiement",
+    "retry": "Réessayer le paiement",
+    "chooseOther": "Choisir d'autres sièges",
+    "helpWhatsapp": "Aide sur WhatsApp",
+    "fail": {
+      "failed": {
+        "title": "Paiement refusé",
+        "text": "Aucun montant n'a été débité. Vos sièges sont toujours retenus, vous pouvez réessayer."
+      },
+      "timeout": {
+        "title": "Délai dépassé",
+        "text": "Nous n'avons pas reçu votre validation. Si un montant a été débité, il sera confirmé automatiquement. Sinon, réessayez."
+      },
+      "lost": {
+        "title": "Connexion perdue",
+        "text": "Nous ne pouvons plus joindre le serveur. Votre paiement n'est pas perdu: vérifiez son état dès que le réseau revient."
+      },
+      "seats_lost": {
+        "title": "Sièges plus disponibles",
+        "text": "Vos sièges ont été pris pendant le paiement. Aucun billet n'a été émis. Choisissez d'autres sièges."
+      }
+    }
+  },
+  "done": {
+    "title": "C'est réservé.",
+    "text": "Voici votre billet. Gardez-le sur votre téléphone: il reste lisible même sans réseau. Présentez-vous 30 minutes avant le départ.",
+    "again": "Nouvelle réservation",
+    "home": "Retour à l'accueil",
+    "fetchFailed": "Votre paiement est bien enregistré, mais le billet n'a pas pu s'afficher. Retrouvez-le avec votre PNR."
+  },
+  "ticket": {
+    "aria": "Billet {pnr}",
+    "pageTitle": "Billet",
+    "pnr": "Référence PNR",
+    "date": "Date",
+    "time": "Horaire",
+    "departure": "Départ",
+    "arrival": "Arrivée",
+    "duration": "Durée",
+    "seats": "Sièges",
+    "passengers": "Passagers",
+    "class": "Classe",
+    "holder": "Titulaire",
+    "phone": "Téléphone",
+    "idNumber": "Pièce d'identité",
+    "total": "Total",
+    "paid": "Montant payé",
+    "amountDue": "Montant à payer",
+    "hidden": "Information masquée",
+    "maskedNote": "Informations sensibles masquées. Déverrouillez le billet pour tout voir.",
+    "boardingNote": "Présentez le QR code ou votre PNR à l'embarquement.",
+    "qrAlt": "QR code de vérification du billet",
+    "downloadPdf": "Télécharger en PDF",
+    "downloadImage": "Enregistrer en image",
+    "shareWhatsapp": "Partager sur WhatsApp",
+    "copyLink": "Copier le lien",
+    "addCalendar": "Ajouter à mon agenda",
+    "linkCopied": "Lien copié.",
+    "shareText": "Mon billet MEN TRAVEL {pnr}: {url}",
+    "badLink": "Ce lien n'est plus valide. Déverrouillez le billet avec votre pièce d'identité.",
+    "offlineNote": "Vous êtes hors ligne. Voici le dernier état enregistré de votre billet."
+  },
+  "journey": {
+    "title": "Le fil de votre voyage",
+    "current": "étape actuelle",
+    "reserved": "Réservé",
+    "paid": "Payé",
+    "boarding": "Embarquement",
+    "enroute": "En route",
+    "arrived": "Arrivé"
+  },
+  "unlock": {
+    "title": "Voir le billet complet",
+    "text": "Entrez le numéro de la pièce d'identité du titulaire pour afficher son nom et son téléphone.",
+    "label": "Numéro de la pièce d'identité",
+    "hint": "Carte d'identité, passeport ou autre pièce utilisée à la réservation.",
+    "errInvalid": "Ce numéro ne correspond pas. Après plusieurs essais, l'accès est bloqué quelques minutes.",
+    "errEmpty": "Saisissez le numéro de la pièce.",
+    "errLocked": "Trop d'essais. Réessayez dans {n} min.",
+    "cta": "Déverrouiller"
+  },
+  "verify": {
+    "seoTitle": "Vérifier un billet",
+    "seoDescription": "Vérifiez l'authenticité d'un billet MEN TRAVEL avec son PNR.",
+    "title": "Vérifier un billet",
+    "intro": "Saisissez le PNR du billet. Vous verrez le trajet, l'horaire et les sièges, sans aucune information personnelle.",
+    "pnrLabel": "Référence PNR",
+    "pnrHint": "Format MT-XXXXXX-XXXX. Le collage fonctionne.",
+    "errFormat": "Le PNR ressemble à MT-K7N2QX-4HDM.",
+    "cta": "Vérifier",
+    "privacy": "Le nom, le téléphone et la pièce d'identité restent masqués pour toute personne qui ne possède pas le billet.",
+    "another": "Vérifier un autre billet",
+    "tryAgain": "Essayer un autre PNR",
+    "unknownTitle": "Billet introuvable",
+    "unknownText": "Aucun billet ne correspond à cette référence. Vérifiez chaque caractère, ou contactez l'agence.",
+    "throttled": "Trop de vérifications en peu de temps. Patientez une minute.",
+    "errorTitle": "Vérification impossible",
+    "yourSeats": "Les sièges du billet",
+    "seatsLeft": "{n} sur {total} libres",
+    "stamp": {
+      "authentic": "Authentique",
+      "used": "Déjà utilisé",
+      "cancelled": "Annulé",
+      "pending": "En attente de paiement",
+      "unknown": "Inconnu"
+    }
+  },
+  "trip": {
+    "seoTitle": "Mon voyage",
+    "seoDescription": "Suivez votre réservation et retrouvez votre billet avec votre PNR.",
+    "title": "Mon voyage",
+    "intro": "Retrouvez votre billet avec son PNR. Pour voir le nom et le téléphone, vous confirmerez avec votre pièce d'identité.",
+    "cta": "Retrouver mon billet",
+    "saved": "Billets sur cet appareil"
+  },
+  "home": {
+    "seoTitle": "Bus Yaoundé, Douala, Kribi",
+    "seoDescription": "Réservez votre place en bus entre Yaoundé, Douala et Kribi. Dès 5 000 FCFA, paiement Orange Money et MTN MoMo, billet vérifiable.",
+    "citiesTitle": "Les trois villes de la ligne",
+    "leaveFrom": "Partir de {city}",
+    "classesTitle": "Trois classes, un seul confort: le vôtre.",
+    "fromPrice": "dès",
+    "tryDemo": "Essayer avec un billet de démonstration",
+    "allRoutes": "Toutes les lignes",
+    "lineTitle": "La ligne MEN TRAVEL"
+  },
+  "legal": {
+    "contactUs": "Une question ? Contactez-nous",
+    "termsTitle": "Conditions générales de vente",
+    "termsDescription": "Conditions de vente des billets MEN TRAVEL.",
+    "termsIntro": "Huit rubriques, écrites simplement.",
+    "baggageTitle": "Bagages et annulation",
+    "baggageDescription": "Bagages inclus, annulation, modification et bus raté chez MEN TRAVEL.",
+    "baggageIntro": "Ce qui est inclus, et ce qui se passe si vos plans changent.",
+    "privacyTitle": "Confidentialité",
+    "privacyDescription": "Comment MEN TRAVEL protège vos données personnelles.",
+    "privacyIntro": "Vos informations ne servent qu'à émettre et protéger votre billet."
+  },
+  "about": {
+    "seoTitle": "À propos"
+  },
+  "help": {
+    "seoTitle": "Aide et contact",
+    "seoDescription": "Réponses aux questions fréquentes et contacts de MEN TRAVEL: téléphone, WhatsApp, e-mail et agences.",
+    "title": "Besoin d'aide ?",
+    "lead": "Une réponse en quelques secondes, ou une vraie personne de 6h à 22h.",
+    "search": "Chercher une réponse",
+    "searchPlaceholder": "Bagages, paiement, annulation...",
+    "noResult": "Aucune réponse ne correspond. Écrivez-nous sur WhatsApp, nous répondons vite.",
+    "mailNote": "Réponse sous 24 heures"
+  },
+  "classesPage": {
+    "seoTitle": "Classes de voyage"
+  },
+  "onboard": {
+    "seoTitle": "À bord",
+    "prev": "Voir le précédent",
+    "next": "Voir le suivant"
+  },
+  "routes": {
+    "seoTitle": "Trajets et tarifs",
+    "seoDescription": "Les six lignes MEN TRAVEL entre Yaoundé, Douala et Kribi, avec durées, tarifs et horaires.",
+    "title": "Les trajets",
+    "lead": "Trois villes, six lignes, des horaires qui se répètent chaque jour.",
+    "mapLabel": "Carte des trois villes reliées par trois lignes",
+    "mapHint": "Touchez une ligne pour voir ses horaires.",
+    "fares": "Tarifs par classe",
+    "line": "Ligne",
+    "roundTrip": "Aller-retour",
+    "bothWays": "Chaque ligne existe dans les deux sens, aux mêmes tarifs et aux mêmes horaires."
+  },
+  "line": {
+    "seoTitle": "Bus {from} vers {to} dès {price}",
+    "seoDescription": "Bus {from} vers {to}: {km} km, {duration}. Horaires, tarifs par classe et réservation en ligne.",
+    "distance": "Distance",
+    "duration": "Durée",
+    "boarding": "Embarquement",
+    "arrival": "Arrivée",
+    "book": "Réserver ce trajet",
+    "times": "Horaires de départ",
+    "timesHint": "Les départs MasterClass proposent aussi la Business.",
+    "toWord": "vers"
+  },
+  "error": {
+    "title404": "Cette page n'est pas sur la ligne",
+    "text404": "L'adresse est peut-être erronée, ou la page a changé de quai. Retournez à l'accueil ou réservez directement.",
+    "title500": "Un arrêt imprévu",
+    "text500": "Un incident est survenu de notre côté. Réessayez dans un instant.",
+    "home": "Retour à l'accueil"
+  },
+  "parcels": {
+    "seoTitle": "Service courrier",
+    "seoDescription": "Envoyez un colis entre Yaoundé, Douala et Kribi: déposez-le en agence, le destinataire le retire à l'arrivée.",
+    "title": "Envoyer un colis",
+    "lead": "Il voyage dans nos bus, le jour même, et vous suivez chaque étape.",
+    "tabSend": "Envoyer",
+    "tabTrack": "Suivre un colis",
+    "step1": {
+      "title": "Remplissez la demande",
+      "text": "Expéditeur, colis et destinataire, en une page."
+    },
+    "step2": {
+      "title": "Déposez à l'agence",
+      "text": "À Nylon Bastos (Yaoundé) ou en agence partenaire."
+    },
+    "step3": {
+      "title": "Il est retiré à l'arrivée",
+      "text": "Le destinataire est prévenu et retire le colis à l'agence."
+    },
+    "sender": "Expéditeur",
+    "parcel": "Colis et trajet",
+    "receiver": "Destinataire",
+    "fullName": "Nom complet",
+    "email": "E-mail (facultatif)",
+    "kind": "Type de colis",
+    "kinds": {
+      "document": {
+        "name": "Document",
+        "hint": "Enveloppe"
+      },
+      "small": {
+        "name": "Petit colis",
+        "hint": "Jusqu'à 5 kg"
+      },
+      "medium": {
+        "name": "Moyen colis",
+        "hint": "5 à 20 kg"
+      },
+      "large": {
+        "name": "Gros colis",
+        "hint": "20 kg et plus"
+      }
+    },
+    "weight": "Poids estimé (kg)",
+    "sendDate": "Date d'envoi souhaitée",
+    "from": "Ville de départ",
+    "to": "Ville d'arrivée",
+    "declared": "Valeur déclarée en FCFA (facultatif)",
+    "estimate": "Tarif estimé",
+    "estimateNote": "Le tarif définitif est confirmé à l'agence lors du dépôt.",
+    "notes": "Contenu et instructions (facultatif)",
+    "forbidden": "Interdits: matières dangereuses, espèces, denrées périssables non emballées.",
+    "errGeneric": "La demande n'a pas pu être envoyée. Réessayez.",
+    "submit": "Envoyer ma demande",
+    "doneTitle": "Demande enregistrée",
+    "doneText": "Déposez le colis à l'agence avec ce numéro de suivi.",
+    "trackingId": "Numéro de suivi",
+    "followIt": "Suivre ce colis",
+    "another": "Faire une autre demande",
+    "trackCta": "Suivre",
+    "unknown": "Numéro introuvable. Format attendu: CL-XXXXXXXX.",
+    "receiverIs": "Destinataire:",
+    "stage": {
+      "registered": "Demande enregistrée",
+      "dropped": "Déposé en agence",
+      "onboard": "Dans le bus",
+      "arrived": "Arrivé à l'agence",
+      "delivered": "Retiré par le destinataire"
+    }
+  },
+  "charter": {
+    "seoTitle": "Location de bus",
+    "seoDescription": "Louez un autocar de 15 à 70 places pour votre groupe. Devis gratuit, sans engagement, réponse sous 24 heures ouvrées.",
+    "kicker": "Location de bus, de 15 à 70 places",
+    "progress": "Progression de la demande de devis",
+    "q": {
+      "kind": "Quel type de course ?",
+      "passengers": "Combien de passagers ?",
+      "route": "D'où à où ?",
+      "dates": "Quand ?",
+      "details": "Un mot sur l'occasion ?",
+      "contact": "Comment vous joindre ?",
+      "recap": "On récapitule ?",
+      "done": "Demande envoyée"
+    },
+    "hint": {
+      "kind": "Un aller simple, un aller-retour, ou un bus à votre disposition.",
+      "passengers": "Nous choisissons la taille du bus pour vous.",
+      "route": "Une ville, un quartier, un site: écrivez-le comme vous le diriez.",
+      "dates": "La date de départ et, si besoin, celle du retour.",
+      "details": "Mariage, séminaire, excursion... et tout ce qui nous aide.",
+      "contact": "Nous vous répondons sous 24 heures ouvrées.",
+      "recap": "Vérifiez, puis envoyez. C'est gratuit et sans engagement."
+    },
+    "kinds": {
+      "one-way": {
+        "name": "Aller simple",
+        "text": "Un trajet, dans un sens."
+      },
+      "round-trip": {
+        "name": "Aller-retour",
+        "text": "Le bus vous ramène."
+      },
+      "charter": {
+        "name": "Mise à disposition",
+        "text": "À la journée ou sur plusieurs jours."
+      }
+    },
+    "less": "Retirer 5 passagers",
+    "more": "Ajouter 5 passagers",
+    "sizes": "Tailles de bus",
+    "seats": "places",
+    "suggest": "Nous prévoyons {n} bus de {size} places. | Nous prévoyons {n} bus de {size} places.",
+    "fromPlace": "Lieu de départ",
+    "toPlace": "Destination",
+    "startDate": "Date de départ",
+    "returnDate": "Date de retour",
+    "lastDay": "Dernier jour",
+    "occasion": "Occasion (facultatif)",
+    "occasionPh": "Mariage, séminaire, excursion",
+    "notes": "Précisions (facultatif)",
+    "errStep": "Complétez ce champ pour continuer.",
+    "back": "Retour",
+    "send": "Envoyer la demande de devis",
+    "passengers": "Passagers",
+    "route": "Itinéraire",
+    "dates": "Dates",
+    "contact": "Contact",
+    "reference": "Référence de la demande",
+    "doneText": "Nous vous répondons avec un devis personnalisé sous 24 heures ouvrées.",
+    "estimateTitle": "Estimation indicative",
+    "to": "à",
+    "estimateNote": "{n} bus de {size} places. Le devis définitif tient compte de vos horaires et de la route."
+  },
+  "search": {
+    "from": "Départ",
+    "to": "Arrivée",
+    "date": "Date",
+    "cta": "Rechercher",
+    "swap": "Inverser le trajet",
+    "nextToday": "Prochains départs aujourd'hui, {from} vers {to}:",
+    "seats": "{n} place | {n} places"
+  }
+}
