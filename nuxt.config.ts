@@ -43,6 +43,13 @@ export default defineNuxtConfig({
         { name: 'color-scheme', content: 'light dark' },
       ],
       link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+      script: [
+        {
+          src: 'https://umami.nenxel.com/script.js',
+          'data-website-id': '65435638-36c3-4f7b-bb65-0f51a9de8a88',
+          'defer': true,
+        },
+      ]
     },
   },
 
