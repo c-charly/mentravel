@@ -453,7 +453,7 @@ const stepTitle = computed(() => {
 
         <!-- Barre d'action collee en bas -->
         <div class="surface sticky bottom-4 z-30 p-3">
-          <div class="flex flex-wrap items-center gap-3">
+          <div class="sm:flex space-y-3 items-center gap-3">
             <div class="min-w-0 flex-1">
               <ul v-if="leg.seatIds.length" class="flex flex-wrap items-center gap-1.5" :aria-label="$t('ticket.seats')">
                 <li v-for="id in leg.seatIds" :key="id">

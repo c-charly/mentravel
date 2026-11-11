@@ -172,7 +172,7 @@ const opName = computed(() => (operator.value === 'orange' ? 'Orange Money' : 'M
           <span class="mono shrink-0 font-bold text-muted">+237</span>
           <input
             :value="phone"
-            class="mono grow bg-transparent outline-none"
+            class="grow input"
             inputmode="tel"
             autocomplete="tel-national"
             enterkeyhint="done"

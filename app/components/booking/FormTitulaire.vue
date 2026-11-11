@@ -91,7 +91,7 @@ const idHint = computed(() =>
         <span class="mono shrink-0 font-bold text-muted">+237</span>
         <input
           :value="store.holder.phone"
-          class="mono grow bg-transparent outline-none"
+          class="mono grow input bg-transparent outline-none"
           inputmode="tel"
           autocomplete="tel-national"
           enterkeyhint="next"
@@ -113,7 +113,7 @@ const idHint = computed(() =>
         <label
           v-for="t in idTypes"
           :key="t.id"
-          class="flex cursor-pointer flex-col items-center gap-1.5 rounded-2xl border px-2 py-3.5 text-center text-sm font-medium transition-colors hover:bg-base-200 has-[:checked]:border-base-content has-[:checked]:bg-base-200 has-[:checked]:ring-1 has-[:checked]:ring-base-content has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2"
+          class="flex cursor-pointer flex items-center gap-1.5 rounded-xl border p-2 text-center text-xs font-medium transition-colors hover:bg-base-200 has-[:checked]:border-base-content has-[:checked]:bg-base-200 has-[:checked]:ring-1 has-[:checked]:ring-base-content has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2"
           :class="store.holder.idType === t.id ? 'border-base-content' : 'border-line'"
         >
           <input v-model="store.holder.idType" type="radio" class="sr-only" name="idType" :value="t.id" />

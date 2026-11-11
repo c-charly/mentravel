@@ -45,7 +45,8 @@
     "about": "About",
     "help": "Help and contact",
     "blurb": "Comfortable buses between Yaoundé, Douala and Kribi.",
-    "services": "Services"
+    "services": "Services",
+    "rights": "All rights reserved."
   },
   "calendar": {
     "title": "Pick your day",
@@ -188,9 +189,9 @@
     "phoneHint": "So we can reach you if a departure changes.",
     "idType": "ID document",
     "idTypes": {
-      "cni": "ID card",
+      "cni": "CNI",
       "passport": "Passport",
-      "other": "Other document"
+      "other": "Other"
     },
     "idNumber": "Document number",
     "idHint": "It protects your ticket: only the holder can view it in full.",

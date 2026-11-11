@@ -46,7 +46,7 @@ const other = computed(() => (editing.value === 'from' ? store.to : store.from))
 
 <template>
   <div>
-    <div class="surface flex flex-wrap items-stretch gap-1 p-1.5 sm:flex-nowrap">
+    <div class="surface flex flex-wrap items-center gap-1 p-1.5 sm:flex-nowrap">
       <button
         type="button"
         class="min-w-0 flex-1 basis-[38%] rounded-2xl px-4 py-2.5 text-left transition-colors enabled:hover:bg-base-200"
@@ -85,7 +85,7 @@ const other = computed(() => (editing.value === 'from' ? store.to : store.from))
 
       <div
         v-if="showTrip"
-        class="flex w-full shrink-0 rounded-2xl bg-base-200 p-1 sm:ml-1 sm:w-auto"
+        class="flex w-full shrink-0 rounded-xl bg-base-200 p-1 sm:ml-1 sm:mr-2 sm:w-auto h-fit"
         role="group"
         :aria-label="$t('booking.tripType')"
       >

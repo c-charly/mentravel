@@ -45,7 +45,8 @@
     "about": "À propos",
     "help": "Aide et contact",
     "blurb": "Bus confortables entre Yaoundé, Douala et Kribi.",
-    "services": "Services"
+    "services": "Services",
+    "rights": "Tous droits réservés."
   },
   "calendar": {
     "title": "Choisissez votre jour",
@@ -188,9 +189,9 @@
     "phoneHint": "Pour vous joindre en cas de changement de départ.",
     "idType": "Pièce d'identité",
     "idTypes": {
-      "cni": "Carte d'identité",
+      "cni": "CNI",
       "passport": "Passeport",
-      "other": "Autre pièce"
+      "other": "Autre"
     },
     "idNumber": "Numéro de la pièce",
     "idHint": "Il protège votre billet: seul le titulaire peut le consulter en entier.",

@@ -215,11 +215,11 @@ p {
   color: var(--color-base-content);
 }
 
-:focus-visible {
+/* :focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 3px;
   border-radius: 8px;
-}
+} */
 
 button,
 [role='button'],
@@ -403,8 +403,8 @@ a {
   opacity: 0.45;
 }
 
-.input,
-.select,
+.inputz,
+.selectz,
 .textarea {
   min-height: 3rem;
   font-size: 1rem;
@@ -415,8 +415,8 @@ a {
     border-color 0.15s,
     outline-color 0.15s;
 }
-.input:focus,
-.input:focus-within,
+.inputz:focus,
+.inputz:focus-within,
 .select:focus,
 .textarea:focus {
   border-color: var(--color-base-content);

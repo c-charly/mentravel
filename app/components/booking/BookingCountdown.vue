@@ -54,7 +54,7 @@ watch(remainingSec, (s, before) => {
       role="timer"
       :aria-label="$t('booking.holdTimer')"
     >
-      <svg viewBox="0 0 32 32" class="size-6 -rotate-90" aria-hidden="true">
+      <svg viewBox="0 0 32 32" class="size-3 -rotate-90" aria-hidden="true">
         <circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-opacity="0.25" stroke-width="3" />
         <circle
           cx="16"

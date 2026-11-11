@@ -136,15 +136,15 @@ const patClass = (c: ClassId) => (c === 'business' ? 'pat-business' : c === 'mas
         <ul class="grid gap-3">
           <li v-for="d in g.items" :key="d.id" class="surface p-4">
             <div class="grid gap-4 md:grid-cols-[11.5rem_1fr] md:items-center">
-              <div class="flex items-center gap-3">
-                <p class="display tnum text-[1.5rem] leading-none">{{ d.departureTime }}</p>
+              <div class="flex items-center gap-2">
+                <p class="display tnum text-[1rem] leading-none">{{ d.departureTime }}</p>
                 <div class="flex flex-1 items-center gap-1.5 text-xs text-muted" aria-hidden="true">
                   <span class="size-1.5 rounded-full" :style="{ background: dot }" />
                   <span class="h-px flex-1 bg-base-300" />
                   <span class="tnum">{{ duration(d.durationMin) }}</span>
                   <span class="h-px flex-1 bg-base-300" />
                 </div>
-                <p class="display tnum text-[1.5rem] leading-none">
+                <p class="display tnum text-[1rem] leading-none">
                   {{ d.arrivalTime }}<sup v-if="d.arrivalNextDay" class="ml-0.5 text-xs font-semibold text-muted">+1</sup>
                 </p>
               </div>
@@ -156,20 +156,20 @@ const patClass = (c: ClassId) => (c === 'business' ? 'pat-business' : c === 'mas
                     class="lane flex h-full w-full flex-col rounded-2xl border px-3.5 py-2.5 text-left transition-colors"
                     :class="[
                       selectedId === d.id && selectedClass === o.classId
-                        ? 'border-primary bg-base-200 ring-1 ring-primary'
+                        ? 'border-primary/30 bg-base-200/60'
                         : 'border-line',
-                      tone(o) === 'full' ? 'cursor-not-allowed opacity-50' : 'hover:border-base-content hover:bg-base-200/60',
+                      tone(o) === 'full' ? 'cursor-not-allowed opacity-50' : 'hover:border-primary/30 hover:bg-base-200/60',
                     ]"
                     :disabled="tone(o) === 'full'"
                     :aria-pressed="selectedId === d.id && selectedClass === o.classId"
                     :aria-label="`${d.departureTime}, ${CLASSES[o.classId].name}, ${tone(o) === 'full' ? $t('calendar.full') : $t('calendar.seatsLeft', { n: o.left }, o.left)}, ${fcfa(o.price)}`"
                     @click="emit('pick', d, o)"
                   >
-                    <span class="flex items-center gap-2 whitespace-nowrap text-[0.82rem] font-semibold">
+                    <span class="flex items-center gap-2 whitespace-nowrap text-[0.82rem]">
                       <i class="inline-block size-3 shrink-0 rounded-[4px]" :class="patClass(o.classId)" aria-hidden="true" />{{ CLASSES[o.classId].name }}
                     </span>
-                    <span class="display tnum mt-1 text-lg leading-tight" :class="tone(o) === 'full' ? 'line-through' : ''">{{ fcfa(o.price) }}</span>
-                    <span class="mt-1 text-xs" :class="tone(o) === 'full' ? 'font-semibold text-error' : tone(o) === 'last' ? 'font-semibold text-dla-ink' : 'text-muted'">
+                    <span class="display tnum mt-1 text-md font-medium leading-tight" :class="tone(o) === 'full' ? 'line-through' : ''">{{ fcfa(o.price) }}</span>
+                    <span class="mt-1 text-xs font-light" :class="tone(o) === 'full' ? 'text-error' : tone(o) === 'last' ? 'text-dla-ink' : 'text-muted'">
                       <template v-if="tone(o) === 'full'">{{ $t('calendar.full') }}</template>
                       <template v-else-if="tone(o) === 'last'">{{ $t('schedule.lastLeft', { n: o.left }, o.left) }}</template>
                       <template v-else>{{ $t('calendar.seatsLeft', { n: num(o.left) }, o.left) }}</template>

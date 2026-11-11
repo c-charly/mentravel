@@ -25,7 +25,7 @@ const onBooking = computed(() => route.path.includes('/reserver'))
     >
       <div class="mx-auto flex h-16 max-w-7xl items-center gap-6 px-5 sm:px-8">
         <NuxtLink :to="localePath('/')" :aria-label="$t('nav.home')" class="shrink-0">
-          <BrandMark />
+          <BrandMark mobile/>
         </NuxtLink>
 
         <nav class="hidden lg:block" :aria-label="$t('nav.main')">

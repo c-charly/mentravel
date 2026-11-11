@@ -42,12 +42,7 @@ defineExpose({ el })
       <!-- Bandeau -->
       <div class="flex items-center justify-between gap-3 bg-[#031225] px-4 py-2 text-[#f4efe6]">
         <span class="inline-flex items-center gap-2">
-          <svg viewBox="0 0 24 24" class="size-5" aria-hidden="true">
-            <line x1="5" y1="12" x2="19" y2="12" stroke="#f4efe6" stroke-width="2" stroke-linecap="round" opacity="0.6" />
-            <circle cx="5" cy="12" r="2.8" fill="#3ddc9e" />
-            <circle cx="12" cy="12" r="2.8" fill="#ff9250" />
-            <circle cx="19" cy="12" r="2.8" fill="#34d3e3" />
-          </svg>
+          <img src="/logo.png" alt="logo" class="size-8">
           <span class="text-xs font-bold tracking-tight">MEN TRAVEL</span>
         </span>
         <span class="text-xs font-semibold text-[#f4efe6]/80">{{ CLASSES[ticket.classId].name }}</span>
@@ -64,7 +59,9 @@ defineExpose({ el })
             <div class="relative h-4 min-w-8 flex-1" aria-hidden="true">
               <span class="absolute inset-x-1 top-1/2 h-[2px] -translate-y-1/2 bg-[#031225]" />
               <span class="absolute left-0 top-1/2 size-3 -translate-y-1/2 rounded-full" :style="{ background: colors[ticket.route.fromCity] }" />
-              <Icon name="lucide:bus" class="absolute left-1/2 top-1/2 size-5 -translate-x-1/2 -translate-y-1/2 bg-[#fbf8f2] px-0.5" />
+              <div class="absolute z-10 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#fbf8f2] p-2 rounded-full">
+                <Icon name="lucide:bus" class="size-5"/>
+              </div>
               <span class="absolute right-0 top-1/2 size-3 -translate-y-1/2 rounded-full" :style="{ background: colors[ticket.route.toCity] }" />
             </div>
             <div class="min-w-0 text-right">

@@ -33,6 +33,7 @@ const columns = [
     ],
   },
 ]
+const year = new Date().getFullYear()
 const label = (col: string, key: string) =>
   col === 'info' && ['terms', 'baggage', 'privacy', 'about', 'help'].includes(key) ? `footer.${key}` : `nav.${key}`
 </script>
@@ -79,7 +80,11 @@ const label = (col: string, key: string) =>
       </div>
 
       <div class="mt-12 flex flex-col gap-4 border-t border-line pt-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
-        <p>{{ BRAND.name }}. {{ $t('footer.madeIn') }}</p>
+        <div>
+          <p class="wrap pb-1 text-sm opacity-90">&copy; {{ year }} {{ BRAND.name }}. {{ $t('footer.rights') }}</p>
+          <p class="wrap pb-8 text-sm opacity-90"><a href="https://nenxel.com">by Nenxel</a></p>
+        </div>
+
         <div class="flex flex-wrap items-center gap-3">
           <span class="chip !bg-base-100 border border-line">Orange Money</span>
           <span class="chip !bg-base-100 border border-line">MTN MoMo</span>

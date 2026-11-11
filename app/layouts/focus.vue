@@ -21,7 +21,7 @@ function tryLeave() {
     <header class="sticky top-0 z-40 border-b border-line bg-base-100/90 backdrop-blur-xl">
       <div class="mx-auto grid h-16 max-w-6xl grid-cols-[1fr_auto] items-center gap-4 px-5 md:grid-cols-[1fr_auto_1fr]">
         <button type="button" class="justify-self-start" :aria-label="$t('nav.home')" @click="tryLeave">
-          <BrandMark />
+          <BrandMark mobile/>
         </button>
         <div class="hidden md:block"><BookingStepper /></div>
         <div class="flex items-center justify-end gap-1.5">

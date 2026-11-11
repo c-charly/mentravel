@@ -11,7 +11,7 @@ export interface MediaDef {
 
 export const MEDIA: Record<string, MediaDef> = {
   'hero-road': {
-    src: '/images/hero-road.svg',
+    src: '/images/hero-road.jpg',
     alt: { fr: 'Un bus MEN TRAVEL sur la route entre deux villes', en: 'A MEN TRAVEL bus on the road between two cities' },
     ratio: '4 / 3',
     tone: 'night',
@@ -53,37 +53,37 @@ export const MEDIA: Record<string, MediaDef> = {
     tone: 'yde',
   },
   'fleet-double-deck': {
-    src: '/images/hero-road.svg',
+    src: '/images/double_etage.jpg',
     alt: { fr: 'Bus double-étage MEN TRAVEL sur la route', en: 'MEN TRAVEL double-decker on the road' },
-    ratio: '16 / 9',
+    ratio: '4 / 3',
     tone: 'night',
   },
   'seats-leather': {
-    src: '/images/class-masterclass-s.svg',
+    src: '/images/siege_inclinable.jpg',
     alt: { fr: 'Sièges inclinables', en: 'Reclining seats' },
     ratio: '4 / 3',
     tone: 'dla',
   },
   entertainment: {
-    src: null,
+    src: "/images/fleet-screens.webp",
     alt: { fr: 'Divertissement à bord', en: 'On-board entertainment' },
     ratio: '4 / 3',
     tone: 'kri',
   },
   'usb-sockets': {
-    src: null,
+    src: "images/interieur-usb.jpg",
     alt: { fr: 'Prise USB à chaque siège', en: 'A USB socket at every seat' },
     ratio: '4 / 3',
     tone: 'yde',
   },
   'bio-safe': {
-    src: null,
+    src: "images/hero-road.jpg",
     alt: { fr: 'Bus certifié Bio Safe', en: 'Bio Safe certified bus' },
     ratio: '4 / 3',
     tone: 'kri',
   },
   'meal-onboard': {
-    src: '/images/class-masterclass-plus.svg',
+    src: '/images/fleet-meal.webp',
     alt: { fr: 'Repas servi à bord', en: 'Meal served on board' },
     ratio: '4 / 3',
     tone: 'dla',

@@ -59,7 +59,7 @@ watch([from, to], loadNext)
           <span class="text-xs font-medium text-muted">{{ $t('search.from') }}</span>
           <span class="flex items-center gap-2">
             <i class="size-2.5 shrink-0 rounded-full" :style="{ background: colors[from] }" />
-            <select v-model="from" class="w-full cursor-pointer appearance-none bg-transparent pr-6 text-base font-semibold outline-none" @change="fixSame('from')">
+            <select v-model="from" class="select select-ghost select-xs focus:outline-none text-base font-semibold" @change="fixSame('from')">
               <option v-for="c in CITY_IDS" :key="c" :value="c">{{ city(c) }}</option>
             </select>
           </span>
@@ -79,7 +79,7 @@ watch([from, to], loadNext)
           <span class="text-xs font-medium text-muted">{{ $t('search.to') }}</span>
           <span class="flex items-center gap-2">
             <i class="size-2.5 shrink-0 rounded-full" :style="{ background: colors[to] }" />
-            <select v-model="to" class="w-full cursor-pointer appearance-none bg-transparent pr-6 text-base font-semibold outline-none" @change="fixSame('to')">
+            <select v-model="to" class="select select-ghost select-xs focus:outline-none text-base font-semibold" @change="fixSame('to')">
               <option v-for="c in CITY_IDS" :key="c" :value="c">{{ city(c) }}</option>
             </select>
           </span>
@@ -88,7 +88,7 @@ watch([from, to], loadNext)
 
         <label class="field block rounded-[1.25rem] px-4 py-2.5 transition-colors hover:bg-base-200 focus-within:bg-base-200">
           <span class="text-xs font-medium text-muted">{{ $t('search.date') }}</span>
-          <input v-model="date" type="date" :min="today" class="block w-full bg-transparent text-base font-semibold outline-none" :aria-label="$t('search.date')" />
+          <input v-model="date" type="date" :min="today" class="block w-full bg-transparent text-base font-semibold outline-none focus:outline-none" :aria-label="$t('search.date')" />
         </label>
 
         <button type="submit" class="btn btn-primary btn-lg w-full md:ml-1 md:w-auto">

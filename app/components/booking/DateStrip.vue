@@ -145,9 +145,9 @@ const weekdayInitials = ['2026-11-02', '2026-11-03', '2026-11-04', '2026-11-05',
 <template>
   <section class="min-w-0" :aria-label="leg === 1 ? $t('strip.titleReturn') : $t('strip.title')">
     <div class="flex items-center justify-between gap-3">
-      <h2 class="text-base font-semibold">
-        {{ leg === 1 ? $t('strip.titleReturn') : $t('strip.title') }}
-        <span v-if="selected" class="ml-1 font-normal capitalize text-muted">{{ monthYear(selected) }}</span>
+      <h2 class="text-base font-semibold space-y-1 sm:flex gap-1">
+        <div>{{ leg === 1 ? $t('strip.titleReturn') : $t('strip.title') }}</div>
+        <div v-if="selected" class="font-normal capitalize text-muted">{{ monthYear(selected) }}</div>
       </h2>
       <div class="flex items-center gap-1.5">
         <button type="button" class="hidden size-8 place-items-center rounded-full border border-line text-muted hover:bg-base-200 hover:text-base-content md:grid" :aria-label="$t('strip.earlier')" @click="scrollBy(-1)">
