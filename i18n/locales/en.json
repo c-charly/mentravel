@@ -75,7 +75,13 @@
     "errorTitle": "Could not load departures",
     "emptyTitle": "No departures to show",
     "emptyFilter": "No departure offers this class on that day.",
-    "emptyDay": "No more departures that day. Pick another day."
+    "emptyDay": "No more departures that day. Pick another day.",
+    "period": {
+      "morning": "Morning",
+      "afternoon": "Afternoon",
+      "evening": "Evening"
+    },
+    "lastLeft": "Only {n} seat left | Only {n} seats left"
   },
   "plan": {
     "label": "Bus seat plan",
@@ -151,7 +157,27 @@
     "tripType": "Trip type",
     "oneWay": "One way",
     "whereWhen": "Where and when are you travelling?",
-    "returnWhen": "And for the return?"
+    "returnWhen": "And for the return?",
+    "stepper": {
+      "depart": "Departure",
+      "sieges": "Seats",
+      "voyageur": "Traveller",
+      "paiement": "Payment",
+      "done": "Done"
+    },
+    "guideDepart": "Pick a day, then tap the class that suits you.",
+    "tripSummary": "Your trip",
+    "travellers": "Travellers",
+    "autoPick": "Choose for me",
+    "autoPickHint": "We seat your travellers side by side, as close to the front as possible.",
+    "orTap": "or tap free seats on the plan",
+    "tapSeat": "Tap a free seat to choose it",
+    "removeSeat": "Remove seat {seat}",
+    "backToDepart": "Change departure",
+    "more": "Add a traveller",
+    "less": "Remove a traveller",
+    "returnAfter": "After your arrival on {date}",
+    "backToSeats": "Change my seats"
   },
   "holder": {
     "title": "Who is travelling?",
@@ -219,7 +245,8 @@
     "text": "Here is your ticket. Keep it on your phone: it stays readable even offline. Arrive 30 minutes before departure.",
     "again": "New booking",
     "home": "Back to home",
-    "fetchFailed": "Your payment is recorded, but the ticket could not be shown. Find it with your PNR."
+    "fetchFailed": "Your payment is recorded, but the ticket could not be shown. Find it with your PNR.",
+    "textShort": "Keep it on your phone, it stays readable offline."
   },
   "ticket": {
     "aria": "Ticket {pnr}",
@@ -251,7 +278,12 @@
     "linkCopied": "Link copied.",
     "shareText": "My MEN TRAVEL ticket {pnr}: {url}",
     "badLink": "This link is no longer valid. Unlock the ticket with your ID document.",
-    "offlineNote": "You are offline. This is the last saved state of your ticket."
+    "offlineNote": "You are offline. This is the last saved state of your ticket.",
+    "actionPdf": "PDF",
+    "actionImage": "Image",
+    "actionWhatsapp": "WhatsApp",
+    "actionLink": "Link",
+    "actionCalendar": "Calendar"
   },
   "journey": {
     "title": "Your journey",
@@ -315,7 +347,9 @@
     "fromPrice": "from",
     "tryDemo": "Try with a demo ticket",
     "allRoutes": "All lines",
-    "lineTitle": "The MEN TRAVEL line"
+    "lineTitle": "The MEN TRAVEL line",
+    "onboardChip": "Wi-Fi, USB, air conditioning",
+    "onboardChipSub": "On every bus"
   },
   "legal": {
     "contactUs": "A question? Contact us",
@@ -523,5 +557,16 @@
     "swap": "Reverse the trip",
     "nextToday": "Next departures today, {from} to {to}:",
     "seats": "{n} seat | {n} seats"
+  },
+  "strip": {
+    "title": "Departure day",
+    "titleReturn": "Return day",
+    "calendar": "Calendar",
+    "legend": "Day legend",
+    "legendOk": "Seats available",
+    "earlier": "Earlier days",
+    "later": "Later days",
+    "prevMonth": "Previous month",
+    "nextMonth": "Next month"
   }
 }

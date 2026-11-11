@@ -75,7 +75,13 @@
     "errorTitle": "Impossible de charger les horaires",
     "emptyTitle": "Aucun départ à afficher",
     "emptyFilter": "Aucun départ ne propose cette classe ce jour-là.",
-    "emptyDay": "Plus de départ ce jour-là. Choisissez un autre jour."
+    "emptyDay": "Plus de départ ce jour-là. Choisissez un autre jour.",
+    "period": {
+      "morning": "Matin",
+      "afternoon": "Après-midi",
+      "evening": "Soir"
+    },
+    "lastLeft": "Plus que {n} place | Plus que {n} places"
   },
   "plan": {
     "label": "Plan du bus",
@@ -151,7 +157,27 @@
     "tripType": "Type de voyage",
     "oneWay": "Aller simple",
     "whereWhen": "Où et quand voyagez-vous ?",
-    "returnWhen": "Et pour le retour ?"
+    "returnWhen": "Et pour le retour ?",
+    "stepper": {
+      "depart": "Départ",
+      "sieges": "Sièges",
+      "voyageur": "Voyageur",
+      "paiement": "Paiement",
+      "done": "Terminé"
+    },
+    "guideDepart": "Choisissez un jour, puis touchez la classe qui vous convient.",
+    "tripSummary": "Votre trajet",
+    "travellers": "Voyageurs",
+    "autoPick": "Choisir pour moi",
+    "autoPickHint": "Nous plaçons vos voyageurs côte à côte, le plus près de l'avant.",
+    "orTap": "ou touchez les sièges libres sur le plan",
+    "tapSeat": "Touchez un siège libre pour le choisir",
+    "removeSeat": "Retirer le siège {seat}",
+    "backToDepart": "Changer de départ",
+    "more": "Ajouter un voyageur",
+    "less": "Retirer un voyageur",
+    "returnAfter": "Après votre arrivée du {date}",
+    "backToSeats": "Modifier mes sièges"
   },
   "holder": {
     "title": "Qui voyage ?",
@@ -219,7 +245,8 @@
     "text": "Voici votre billet. Gardez-le sur votre téléphone: il reste lisible même sans réseau. Présentez-vous 30 minutes avant le départ.",
     "again": "Nouvelle réservation",
     "home": "Retour à l'accueil",
-    "fetchFailed": "Votre paiement est bien enregistré, mais le billet n'a pas pu s'afficher. Retrouvez-le avec votre PNR."
+    "fetchFailed": "Votre paiement est bien enregistré, mais le billet n'a pas pu s'afficher. Retrouvez-le avec votre PNR.",
+    "textShort": "Gardez-le sur votre téléphone, il reste lisible sans réseau."
   },
   "ticket": {
     "aria": "Billet {pnr}",
@@ -251,7 +278,12 @@
     "linkCopied": "Lien copié.",
     "shareText": "Mon billet MEN TRAVEL {pnr}: {url}",
     "badLink": "Ce lien n'est plus valide. Déverrouillez le billet avec votre pièce d'identité.",
-    "offlineNote": "Vous êtes hors ligne. Voici le dernier état enregistré de votre billet."
+    "offlineNote": "Vous êtes hors ligne. Voici le dernier état enregistré de votre billet.",
+    "actionPdf": "PDF",
+    "actionImage": "Image",
+    "actionWhatsapp": "WhatsApp",
+    "actionLink": "Lien",
+    "actionCalendar": "Agenda"
   },
   "journey": {
     "title": "Le fil de votre voyage",
@@ -315,7 +347,9 @@
     "fromPrice": "dès",
     "tryDemo": "Essayer avec un billet de démonstration",
     "allRoutes": "Toutes les lignes",
-    "lineTitle": "La ligne MEN TRAVEL"
+    "lineTitle": "La ligne MEN TRAVEL",
+    "onboardChip": "Wi-Fi, USB, climatisation",
+    "onboardChipSub": "À bord de chaque bus"
   },
   "legal": {
     "contactUs": "Une question ? Contactez-nous",
@@ -523,5 +557,16 @@
     "swap": "Inverser le trajet",
     "nextToday": "Prochains départs aujourd'hui, {from} vers {to}:",
     "seats": "{n} place | {n} places"
+  },
+  "strip": {
+    "title": "Jour de départ",
+    "titleReturn": "Jour de retour",
+    "calendar": "Calendrier",
+    "legend": "Légende des jours",
+    "legendOk": "Places disponibles",
+    "earlier": "Jours précédents",
+    "later": "Jours suivants",
+    "prevMonth": "Mois précédent",
+    "nextMonth": "Mois suivant"
   }
 }

@@ -11,7 +11,7 @@ Le site source observé est https://booking-mentravel.cm (audit dans `docs/audit
 corepack enable            # ou: npm i -g pnpm@12
 pnpm install
 pnpm dev                   # http://localhost:3000
-pnpm test                  # tests unitaires et tests de parcours dans un runtime Nuxt
+pnpm test                  # tests unitaires (logique serveur et partagee)
 pnpm typecheck             # vue-tsc sur l'application et sur le serveur
 pnpm lint
 pnpm build && pnpm start   # production locale
@@ -63,14 +63,14 @@ Le paiement est simulé. Il réussit par défaut après 4 secondes. Pour tester 
 
 ## Parcours de réservation
 
-Une page, six étapes, l'URL reflète l'état (jamais de donnée personnelle dedans):
+Quatre étapes guidées, un stepper compact et centré dans l'en-tête, l'URL reflète l'état (jamais de donnée personnelle dedans):
 
-1. **Date**: la phrase "Je pars de Yaoundé vers Douala" et le calendrier code-barres (une barre par départ, hauteur = places restantes, motif = classe). Interrupteur "Ajouter le retour".
-2. **Horaire**: frise verticale, une voie par classe disponible, jauges de places.
-3. **Sièges**: plan du bus (Business 2+2, MasterClass 2+1, couchettes en Plus). Retenue de 10 minutes dès le premier siège, compte à rebours, reprise possible.
-4. **Titulaire**: un seul titulaire (nom, prénom, téléphone, pièce d'identité) quel que soit le nombre de sièges (maximum 5).
-5. **Paiement**: Orange Money ou MTN MoMo, opérateur détecté, repli USSD, échecs récupérables sans perdre la sélection.
-6. **Billet**: PDF, image, WhatsApp, lien, agenda, lisible hors ligne.
+1. **Départ**: le trajet (villes, aller simple ou aller-retour), une bande de jours (point vert = places, orange = peu de places, "Complet") avec un calendrier mensuel, puis la liste des départs groupés Matin, Après-midi et Soir. Une pastille par classe: un toucher et le choix est fait. Le premier jour utile est présélectionné.
+2. **Sièges**: plan du bus (Business 2+2, MasterClass 2+1, couchettes en Plus), "Choisir pour moi" (sièges côte à côte, près de l'avant), retenue de 10 minutes dès le premier siège, compte à rebours, reprise possible.
+3. **Voyageur**: un seul titulaire (nom, prénom, téléphone, pièce d'identité) quel que soit le nombre de sièges (maximum 5).
+4. **Paiement**: Orange Money ou MTN MoMo, opérateur détecté, repli USSD, échecs récupérables sans perdre la sélection.
+
+Puis le **billet**: carte papier compacte (entière à l'écran, sur ordinateur comme sur mobile), PDF, image, WhatsApp, lien, agenda, lisible hors ligne.
 
 Vérification publique: `/verifier` et `/verifier/[pnr]` affichent trajet, horaire, sièges, nombre de passagers, montant et tampon de statut.
 Nom, prénom, téléphone et pièce d'identité sont **masqués par le serveur** avant l'envoi. Le billet complet exige le jeton du lien signé

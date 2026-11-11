@@ -119,8 +119,8 @@
   --muted: #5b6778;
   --line: rgb(15 23 42 / 0.09);
   --line-strong: rgb(15 23 42 / 0.16);
-  --shadow-soft: 0 1px 2px rgb(15 23 42 / 0.04), 0 6px 20px -8px rgb(15 23 42 / 0.1);
-  --shadow-lift: 0 2px 4px rgb(15 23 42 / 0.04), 0 24px 48px -16px rgb(15 23 42 / 0.18);
+  --shadow-soft: 0 1px 2px rgb(15 23 42 / 0.04);
+  --shadow-lift: 0 1px 2px rgb(15 23 42 / 0.04), 0 8px 20px -12px rgb(15 23 42 / 0.12);
   --focus: #0b2545;
   --hero-a: #e7f6ef;
   --hero-b: #e2f3f8;
@@ -141,8 +141,8 @@
   --muted: #9ba9bc;
   --line: rgb(255 255 255 / 0.09);
   --line-strong: rgb(255 255 255 / 0.18);
-  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -10px rgb(0 0 0 / 0.5);
-  --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.3), 0 28px 56px -18px rgb(0 0 0 / 0.65);
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.25);
+  --shadow-lift: 0 1px 2px rgb(0 0 0 / 0.25), 0 8px 20px -12px rgb(0 0 0 / 0.5);
   --focus: #eaf0f8;
   --hero-a: #0f2a2a;
   --hero-b: #0e2733;
@@ -164,8 +164,8 @@
     --muted: #9ba9bc;
     --line: rgb(255 255 255 / 0.09);
     --line-strong: rgb(255 255 255 / 0.18);
-    --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px -10px rgb(0 0 0 / 0.5);
-    --shadow-lift: 0 2px 4px rgb(0 0 0 / 0.3), 0 28px 56px -18px rgb(0 0 0 / 0.65);
+    --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.25);
+    --shadow-lift: 0 1px 2px rgb(0 0 0 / 0.25), 0 8px 20px -12px rgb(0 0 0 / 0.5);
     --focus: #eaf0f8;
     --hero-a: #0f2a2a;
     --hero-b: #0e2733;
@@ -492,5 +492,67 @@ a {
 @media (prefers-reduced-motion: reduce) {
   .draw-line {
     stroke-dashoffset: 0;
+  }
+}
+
+/* Billet: papier chaud, encoches reelles (masque) entre le corps et la souche, tampon incline */
+.ticket-wrap {
+  filter: drop-shadow(0 3px 6px rgb(15 23 42 / 0.1));
+}
+.ticket {
+  background: #fbf8f2;
+  color: #0b1b2b;
+  --notch: 11px;
+  --stub-h: 6.75rem;
+  --stub-w: 11rem;
+  -webkit-mask:
+    radial-gradient(circle var(--notch) at 0 calc(100% - var(--stub-h)), #0000 98%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle var(--notch) at 100% calc(100% - var(--stub-h)), #0000 98%, #000) right / 51% 100% no-repeat;
+  mask:
+    radial-gradient(circle var(--notch) at 0 calc(100% - var(--stub-h)), #0000 98%, #000) left / 51% 100% no-repeat,
+    radial-gradient(circle var(--notch) at 100% calc(100% - var(--stub-h)), #0000 98%, #000) right / 51% 100% no-repeat;
+}
+@media (min-width: 640px) {
+  .ticket {
+    -webkit-mask:
+      radial-gradient(circle var(--notch) at calc(100% - var(--stub-w)) 0, #0000 98%, #000) top / 100% 51% no-repeat,
+      radial-gradient(circle var(--notch) at calc(100% - var(--stub-w)) 100%, #0000 98%, #000) bottom / 100% 51% no-repeat;
+    mask:
+      radial-gradient(circle var(--notch) at calc(100% - var(--stub-w)) 0, #0000 98%, #000) top / 100% 51% no-repeat,
+      radial-gradient(circle var(--notch) at calc(100% - var(--stub-w)) 100%, #0000 98%, #000) bottom / 100% 51% no-repeat;
+  }
+}
+.ticket.exporting {
+  -webkit-mask: none;
+  mask: none;
+}
+.ticket-dash {
+  border-top: 1.5px dashed rgb(3 18 37 / 0.28);
+}
+.stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  border: 2px solid currentColor;
+  border-radius: 0.45rem;
+  transform: rotate(-4deg);
+  padding: 0.1rem 0.55rem;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+}
+@keyframes stamp-in {
+  0% {
+    transform: rotate(-4deg) scale(2);
+    opacity: 0;
+  }
+  70% {
+    transform: rotate(-4deg) scale(0.95);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-4deg) scale(1);
+    opacity: 1;
   }
 }

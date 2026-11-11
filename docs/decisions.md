@@ -22,7 +22,14 @@ Le premier jet (bordures épaisses, grain de papier, billet façon carton) a ét
 - barre de navigation classique (liens, langue, thème, bouton Réserver), pied de page sobre en quatre colonnes;
 - accueil structuré comme un moteur de recherche (départ, arrivée, date), puis lignes, classes, étapes, engagements, FAQ;
 - billet en carte blanche épurée avec pastille d'état, sans perforation ni effet de papier;
+- ombres presque absentes, la hiérarchie vient des traits fins et de l'espace;
+- illustrations originales en SVG (route, trois villes, trois classes), remplaçables par des photos dans `content/media.ts`;
+- billet papier d'origine (encoches, tirets, tampon incliné), rendu compact pour tenir entier à l'écran;
 - thème nuit complet, mouvement réduit respecté.
+
+## Réservation repensée
+
+Le calendrier à barres de disponibilité était illisible: il est remplacé par une bande de jours à code couleur et texte (vert, orange, "Complet") et un calendrier mensuel. Date et horaire tiennent sur un seul écran, ce qui ramène le parcours à quatre étapes. La barre de progression pleine largeur laisse place à un stepper centré. L'écran des sièges propose "Choisir pour moi".
 
 ## Stack
 

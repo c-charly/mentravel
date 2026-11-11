@@ -28,14 +28,14 @@ export function useBookingNav() {
     return q
   }
 
-  async function go(step: BookingStep, legIdx: 0 | 1 = store.activeLeg, replace = false) {
+  async function go(step: BookingStep, legIdx: 0 | 1 = store.activeLeg, replace = false, scroll = true) {
     store.activeLeg = legIdx
     store.step = step
     const query = queryFromStore(step, legIdx)
     if (replace) void router.replace({ query })
     else void router.push({ query })
     await nextTick()
-    if (import.meta.client) window.scrollTo({ top: 0, behavior: 'smooth' })
+    if (scroll && import.meta.client) window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   return { go, queryFromStore }

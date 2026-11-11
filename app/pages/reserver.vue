@@ -1,10 +1,11 @@
 <script setup lang="ts">
-// Page de reservation: une phrase, un calendrier code-barres, une frise, un plan de bus, un billet qui se remplit.
-import { CLASSES, CLASS_IDS } from '~~/content/network'
+// Page de reservation guidee: 1 depart (jour + classe), 2 sieges, 3 voyageur, 4 paiement, puis le billet.
+import { CLASSES, CLASS_IDS, getRoute } from '~~/content/network'
 import { roundTripSaving } from '#shared/pricing'
-import { expandTime } from '#shared/time'
+import { expandTime, instantOf } from '#shared/time'
 import type { ClassId, DepartureInfo, FullTicket, OfferInfo, SeatsResponse } from '#shared/types'
 import { applyQuerySync, asStr, isClass, resolveStep } from '~/utils/bookingRoute'
+import { suggestSeats } from '~/utils/seatPick'
 
 definePageMeta({ layout: 'focus', middleware: 'booking' })
 
@@ -20,12 +21,18 @@ const route = useRoute()
 const { go } = useBookingNav()
 const transition = useViewTransition()
 const cache = useTicketCache()
-const { fcfa, city, dateLong, dateShort } = useL10n()
+const { fcfa, city, dateLong } = useL10n()
 
 const legIdx = computed(() => store.activeLeg)
 const leg = computed(() => store.leg)
 const legRoute = computed(() => store.activeRoute)
 const minDate = computed(() => (legIdx.value === 1 ? store.legs[0].date : null))
+// Retour: on ne propose que des departs apres l'arrivee de l'aller
+const notBefore = computed(() => {
+  const l0 = store.legs[0]
+  if (legIdx.value !== 1 || !l0.date || !l0.time) return null
+  return instantOf(l0.date, l0.time, getRoute(store.from, store.to)?.durationMin ?? 0)
+})
 
 // ---------- synchronisation URL <-> etat ----------
 // La lecture de l'URL (villes, dates, etape) est faite par le middleware "booking" avant le rendu.
@@ -113,7 +120,8 @@ watch(
 // ---------- etapes: date et horaire ----------
 async function onPickDate(date: string) {
   store.pickDate(legIdx.value, date)
-  await transition(() => go('horaire'))
+  // Meme ecran: on remplace l'entree d'historique et on ne remonte pas la page
+  await go('horaire', legIdx.value, true, false)
 }
 
 async function onPickOffer(dep: DepartureInfo, offer: OfferInfo) {
@@ -128,12 +136,8 @@ async function onPickOffer(dep: DepartureInfo, offer: OfferInfo) {
   await go('sieges')
 }
 
-async function changeDate() {
-  await transition(() => go('date'))
-}
-
 function onCitiesChanged() {
-  void go('date', 0, true)
+  void go('date', 0, true, false)
 }
 
 // ---------- etape: sieges ----------
@@ -188,6 +192,21 @@ function toggleSeat(id: string) {
   if (i >= 0) cur.splice(i, 1)
   else cur.push(id)
   store.setSeats(legIdx.value, cur)
+}
+
+// "Choisir pour moi" et retrait d'un siege
+const wanted = ref(1)
+function autoPick() {
+  if (!seatsData.value) return
+  limitHit.value = false
+  store.conflictSeats = []
+  store.setSeats(legIdx.value, suggestSeats(seatsData.value.layout, seatsData.value.seats, wanted.value))
+}
+function removeSeat(id: string) {
+  store.setSeats(legIdx.value, leg.value.seatIds.filter((s) => s !== id))
+}
+function stepWanted(delta: number) {
+  wanted.value = Math.min(seatsData.value?.maxSeats ?? 5, Math.max(1, wanted.value + delta))
 }
 
 const seatsBusy = ref(false)
@@ -340,155 +359,116 @@ const stepTitle = computed(() => {
 </script>
 
 <template>
-  <div class="mx-auto px-5 pb-36 pt-8" :class="showAside ? 'max-w-6xl lg:grid lg:grid-cols-[minmax(0,1fr)_21rem] lg:gap-14' : 'max-w-3xl'">
+  <div class="mx-auto px-5 pb-32 pt-7" :class="showAside ? 'max-w-6xl lg:grid lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-12' : 'max-w-3xl'">
     <div class="min-w-0">
       <h2 ref="heading" tabindex="-1" class="sr-only">{{ stepTitle }}</h2>
 
-      <!-- Mobile: acces au billet en cours -->
-      <button
-        v-if="showAside && store.step !== 'date' && store.step !== 'sieges'"
-        type="button"
-        class="btn btn-outline btn-sm mb-5 w-full justify-between lg:hidden"
-        @click="ticketSheet?.showModal()"
-      >
-        <span class="flex items-center gap-2"><Icon name="lucide:ticket" class="size-4" />{{ $t('booking.yourTicket') }}</span>
-        <span class="tnum">{{ store.totalFcfa ? fcfa(store.totalFcfa) : '' }}</span>
-      </button>
+      <!-- Etape 1: depart (jour + classe) -->
+      <div v-if="store.step === 'date' || store.step === 'horaire'" class="grid grid-cols-[minmax(0,1fr)] gap-6">
+        <header>
+          <span v-if="store.roundTrip" class="chip mb-3"><Icon :name="legIdx === 0 ? 'lucide:arrow-right' : 'lucide:arrow-left'" class="size-3.5" />{{ legIdx === 0 ? $t('booking.outbound') : $t('booking.inbound') }}</span>
+          <h1 class="display text-3xl sm:text-4xl">{{ legIdx === 0 ? $t('booking.whereWhen') : $t('booking.returnWhen') }}</h1>
+          <p class="mt-2 text-muted">{{ $t('booking.guideDepart') }}</p>
+        </header>
 
-      <!-- Etape 1: date -->
-      <div v-if="store.step === 'date'" class="grid gap-8">
-        <div v-if="legIdx === 0" class="grid gap-5">
-          <h1 class="display text-3xl sm:text-4xl">{{ $t('booking.whereWhen') }}</h1>
-          <PhraseTrajet show-trip @change="onCitiesChanged" />
-          <p v-if="store.roundTrip && saving > 0" class="flex items-center gap-1.5 text-sm font-semibold text-success">
-            <Icon name="lucide:circle-check" class="size-4" />{{ $t('booking.saveUpTo', { amount: fcfa(saving) }) }}
-          </p>
+        <PhraseTrajet v-if="legIdx === 0" show-trip @change="onCitiesChanged" />
+        <div v-else class="surface flex flex-wrap items-center gap-x-3 gap-y-1 px-5 py-4 font-semibold">
+          {{ city(legRoute.from) }}<Icon name="lucide:arrow-right" class="size-4 text-muted" />{{ city(legRoute.to) }}
+          <span class="text-sm font-normal text-muted">{{ $t('booking.returnAfter', { date: store.legs[0].date ? dateLong(store.legs[0].date) : '' }) }}</span>
         </div>
-        <div v-else>
-          <p class="text-sm text-muted">{{ city(store.from) }} - {{ city(store.to) }}, {{ store.legs[0].date ? dateShort(store.legs[0].date) : '' }}</p>
-          <h1 class="display mt-1 text-3xl sm:text-4xl">
-            {{ $t('booking.phraseReturn', { from: city(legRoute.from), to: city(legRoute.to) }) }}
-          </h1>
-        </div>
-        <CalendrierCodeBarres
-          :from="legRoute.from"
-          :to="legRoute.to"
-          :leg="legIdx"
-          :min-date="minDate"
-          :selected="leg.date"
-          @select="onPickDate"
-        />
-      </div>
+        <p v-if="store.roundTrip && legIdx === 0 && saving > 0" class="-mt-3 flex items-center gap-1.5 text-sm font-semibold text-success">
+          <Icon name="lucide:circle-check" class="size-4" />{{ $t('booking.saveUpTo', { amount: fcfa(saving) }) }}
+        </p>
 
-      <!-- Etape 2: horaire -->
-      <div v-else-if="store.step === 'horaire'" class="grid gap-6">
-        <h1 class="display text-3xl sm:text-4xl">{{ $t('booking.titleSchedule') }}</h1>
-        <PhraseTrajet v-if="legIdx === 0" @change="onCitiesChanged" />
-        <p v-else class="text-lg font-semibold">{{ city(legRoute.from) }} - {{ city(legRoute.to) }}</p>
-        <button
-          v-if="leg.date"
-          type="button"
-          class="surface flex w-fit items-center gap-3 !rounded-full px-5 py-2.5 text-left"
-          style="view-transition-name: picked-day"
-          @click="changeDate"
-        >
-          <Icon name="lucide:calendar" class="size-5" />
-          <span class="font-bold capitalize">{{ dateLong(leg.date) }}</span>
-          <span class="text-sm text-muted underline">{{ $t('booking.changeDate') }}</span>
-        </button>
-        <div class="flex flex-wrap gap-2" role="group" :aria-label="$t('calendar.filter')">
-          <button
-            type="button"
-            class="inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-sm font-medium transition-colors"
-            :class="store.classFilter === 'all' ? 'bg-base-content text-base-100' : 'bg-base-200 hover:bg-base-300'"
-            :aria-pressed="store.classFilter === 'all'"
-            @click="store.classFilter = 'all'"
-          >
-            {{ $t('calendar.allClasses') }}
-          </button>
-          <button
-            v-for="c in CLASS_IDS"
-            :key="c"
-            type="button"
-            class="inline-flex items-center gap-2 rounded-full px-3.5 py-2 text-sm font-medium transition-colors"
-            :class="store.classFilter === c ? 'bg-base-content text-base-100' : 'bg-base-200 hover:bg-base-300'"
-            :aria-pressed="store.classFilter === c"
-            @click="store.classFilter = c"
-          >
-            <ClassMark :id="c" />{{ CLASSES[c].name }}
-          </button>
+        <div class="z-20 -mx-5 bg-base-100 px-5 py-3 md:sticky md:top-[4.05rem] md:border-b md:border-line">
+          <DateStrip :from="legRoute.from" :to="legRoute.to" :leg="legIdx" :min-date="minDate" :selected="leg.date" @select="onPickDate" />
         </div>
-        <FriseHoraire
+
+        <DepartureList
           v-if="leg.date"
           :from="legRoute.from"
           :to="legRoute.to"
           :date="leg.date"
           :selected-id="leg.departureId"
           :selected-class="leg.classId"
+          :not-before="notBefore"
           @pick="onPickOffer"
         />
       </div>
 
-      <!-- Etape 3: sieges -->
-      <div v-else-if="store.step === 'sieges'" class="grid gap-6">
-        <div>
-          <p class="text-sm text-muted">
-            {{ city(legRoute.from) }} - {{ city(legRoute.to) }}
-            <span v-if="store.roundTrip">, {{ legIdx === 0 ? $t('booking.outbound') : $t('booking.inbound') }}</span>
+      <!-- Etape 2: sieges -->
+      <div v-else-if="store.step === 'sieges'" class="grid grid-cols-[minmax(0,1fr)] gap-6">
+        <header>
+          <button type="button" class="btn btn-ghost btn-sm -ml-3 mb-2" @click="go('horaire')">
+            <Icon name="lucide:arrow-left" class="size-4" />{{ $t('booking.backToDepart') }}
+          </button>
+          <h1 class="display text-3xl sm:text-4xl">{{ $t('booking.titleSeats') }}</h1>
+          <p v-if="leg.classId && leg.date" class="mt-3 flex flex-wrap items-center gap-2 text-sm">
+            <span class="chip capitalize">{{ dateLong(leg.date) }}</span>
+            <span class="chip tnum">{{ leg.time }} - {{ leg.arrivalTime }}</span>
+            <span class="chip"><ClassMark :id="leg.classId" swatch />{{ CLASSES[leg.classId].name }}</span>
           </p>
-          <h1 class="display mt-1 text-3xl sm:text-4xl">{{ $t('booking.titleSeats') }}</h1>
-          <p v-if="leg.classId && leg.date" class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-muted">
-            <span class="font-semibold capitalize text-base-content">{{ dateLong(leg.date) }}</span>
-            <span class="mono">{{ leg.time }} - {{ leg.arrivalTime }}</span>
-            <span class="flex items-center gap-1.5"><ClassMark :id="leg.classId" />{{ CLASSES[leg.classId].name }}</span>
-            <button type="button" class="underline" @click="go('horaire')">{{ $t('booking.changeSchedule') }}</button>
-          </p>
-          <p class="mt-3 max-w-xl text-muted">{{ $t('booking.seatsIntro', { n: seatsData?.maxSeats ?? 5 }) }}</p>
-        </div>
+        </header>
 
         <div v-if="store.conflictSeats.length" class="flex items-start gap-3 rounded-2xl bg-error/10 p-4" role="alert">
           <Icon name="lucide:circle-alert" class="mt-0.5 size-5 shrink-0 text-error" />
-          <p class="font-semibold">{{ $t('booking.seatsTaken', { seats: store.conflictSeats.join(', ') }) }}</p>
+          <p class="font-medium">{{ $t('booking.seatsTaken', { seats: store.conflictSeats.join(', ') }) }}</p>
         </div>
         <div v-if="limitHit" class="flex items-start gap-3 rounded-2xl bg-base-200 p-4" role="status">
           <Icon name="lucide:info" class="mt-0.5 size-5 shrink-0" />
-          <p class="font-semibold">{{ $t('booking.seatsLimit', { n: seatsData?.maxSeats ?? 5 }) }}</p>
+          <p class="font-medium">{{ $t('booking.seatsLimit', { n: seatsData?.maxSeats ?? 5 }) }}</p>
         </div>
 
         <div v-if="seatsFailed" class="rounded-2xl bg-error/10 p-5" role="alert">
           <p class="font-semibold">{{ $t('booking.seatsError') }}</p>
           <button type="button" class="btn btn-primary btn-sm mt-3" @click="loadSeats()">{{ $t('common.retry') }}</button>
         </div>
-        <div v-else-if="seatsLoading || !seatsData" class="mx-auto h-96 w-64 animate-pulse rounded-t-[3.5rem] rounded-b-2xl bg-base-200" aria-busy="true" />
-        <PlanBus
-          v-else
-          :layout="seatsData.layout"
-          :seats="seatsData.seats"
-          :class-id="seatsData.classId"
-          :selected="leg.seatIds"
-          :max="seatsData.maxSeats"
-          @toggle="toggleSeat"
-          @limit="limitHit = true"
-        />
+        <template v-else>
+          <!-- Aide: nombre de voyageurs et choix automatique -->
+          <div class="surface flex flex-wrap items-center gap-x-5 gap-y-3 p-4">
+            <div class="flex items-center gap-3">
+              <span class="text-sm font-semibold">{{ $t('booking.travellers') }}</span>
+              <div class="flex items-center rounded-full border border-line">
+                <button type="button" class="grid size-9 place-items-center rounded-full hover:bg-base-200 disabled:opacity-40" :disabled="wanted <= 1" :aria-label="$t('booking.less')" @click="stepWanted(-1)"><Icon name="lucide:minus" class="size-4" /></button>
+                <span class="tnum w-6 text-center font-semibold" aria-live="polite">{{ wanted }}</span>
+                <button type="button" class="grid size-9 place-items-center rounded-full hover:bg-base-200 disabled:opacity-40" :disabled="wanted >= (seatsData?.maxSeats ?? 5)" :aria-label="$t('booking.more')" @click="stepWanted(1)"><Icon name="lucide:plus" class="size-4" /></button>
+              </div>
+            </div>
+            <button type="button" class="btn btn-outline btn-sm" :disabled="!seatsData" @click="autoPick"><Icon name="lucide:wand-sparkles" class="size-4" />{{ $t('booking.autoPick') }}</button>
+            <p class="text-sm text-muted">{{ $t('booking.orTap') }}</p>
+          </div>
+
+          <div v-if="seatsLoading || !seatsData" class="mx-auto h-96 w-64 animate-pulse rounded-t-[3.5rem] rounded-b-[1.75rem] bg-base-200" aria-busy="true" />
+          <PlanBus
+            v-else
+            :layout="seatsData.layout"
+            :seats="seatsData.seats"
+            :class-id="seatsData.classId"
+            :selected="leg.seatIds"
+            :max="seatsData.maxSeats"
+            @toggle="toggleSeat"
+            @limit="limitHit = true"
+          />
+        </template>
 
         <!-- Barre d'action collee en bas -->
-        <div class="surface sticky bottom-4 z-30 p-3 shadow-[var(--shadow-lift)]">
+        <div class="surface sticky bottom-4 z-30 p-3">
           <div class="flex flex-wrap items-center gap-3">
             <div class="min-w-0 flex-1">
-              <p class="truncate font-bold">
-                <template v-if="leg.seatIds.length">
-                  {{ $t('booking.seatsChosen', { n: leg.seatIds.length }, leg.seatIds.length) }}
-                  <span class="mono ml-1">{{ leg.seatIds.join(' ') }}</span>
-                </template>
-                <template v-else>{{ $t('booking.noSeat') }}</template>
-              </p>
-              <p class="tnum text-sm text-muted">
+              <ul v-if="leg.seatIds.length" class="flex flex-wrap items-center gap-1.5" :aria-label="$t('ticket.seats')">
+                <li v-for="id in leg.seatIds" :key="id">
+                  <button type="button" class="mono inline-flex items-center gap-1 rounded-full bg-base-200 py-1 pl-3 pr-2 text-sm font-semibold hover:bg-base-300" :aria-label="$t('booking.removeSeat', { seat: id })" @click="removeSeat(id)">
+                    {{ id }}<Icon name="lucide:x" class="size-3.5" />
+                  </button>
+                </li>
+              </ul>
+              <p v-else class="flex items-center gap-2 text-sm font-medium text-muted"><Icon name="lucide:pointer" class="size-4" />{{ $t('booking.tapSeat') }}</p>
+              <p class="tnum mt-1 text-sm" :class="leg.seatIds.length ? 'font-semibold' : 'text-muted'">
                 {{ leg.seatIds.length ? fcfa(leg.unitPrice * leg.seatIds.length) : fcfa(leg.unitPrice) + ' ' + $t('booking.perSeat') }}
               </p>
             </div>
-            <button type="button" class="btn btn-ghost btn-sm lg:hidden" @click="ticketSheet?.showModal()">
-              <Icon name="lucide:ticket" class="size-5" />
-              <span class="sr-only">{{ $t('booking.yourTicket') }}</span>
+            <button type="button" class="btn btn-ghost btn-circle btn-sm lg:hidden" @click="ticketSheet?.showModal()">
+              <Icon name="lucide:ticket" class="size-5" /><span class="sr-only">{{ $t('booking.yourTicket') }}</span>
             </button>
             <button type="button" class="btn btn-primary" :disabled="!leg.seatIds.length || seatsBusy" @click="continueSeats">
               <Icon v-if="seatsBusy || store.holdBusy" name="lucide:loader" class="size-5 animate-spin" />
@@ -499,28 +479,49 @@ const stepTitle = computed(() => {
         </div>
       </div>
 
-      <!-- Etape 4: titulaire -->
-      <div v-else-if="store.step === 'titulaire'" class="grid gap-6">
-        <div v-if="store.roundTrip" class="flex flex-wrap gap-2 text-sm">
-          <button v-for="i in 2" :key="i" type="button" class="btn btn-outline btn-sm" @click="editSeatsLeg((i - 1) as 0 | 1)">
+      <!-- Etape 3: voyageur -->
+      <div v-else-if="store.step === 'titulaire'" class="grid grid-cols-[minmax(0,1fr)] gap-6">
+        <div class="flex flex-wrap items-center gap-2">
+          <button v-if="!store.roundTrip" type="button" class="btn btn-ghost btn-sm -ml-3" @click="editSeatsLeg(0)">
+            <Icon name="lucide:arrow-left" class="size-4" />{{ $t('booking.backToSeats') }}
+          </button>
+          <button v-for="i in (store.roundTrip ? 2 : 0)" :key="i" type="button" class="btn btn-outline btn-sm" @click="editSeatsLeg((i - 1) as 0 | 1)">
             <Icon name="lucide:armchair" class="size-4" />
-            {{ i === 1 ? $t('booking.outbound') : $t('booking.inbound') }}: {{ store.legs[i - 1]!.seatIds.join(' ') }}
+            {{ i === 1 ? $t('booking.outbound') : $t('booking.inbound') }}: <span class="mono">{{ store.legs[i - 1]!.seatIds.join(' ') }}</span>
           </button>
         </div>
+        <button
+          type="button"
+          class="surface flex w-full items-center justify-between px-4 py-3 text-left lg:hidden"
+          @click="ticketSheet?.showModal()"
+        >
+          <span class="flex items-center gap-2 font-semibold"><Icon name="lucide:ticket" class="size-4" />{{ $t('booking.yourTicket') }}</span>
+          <span class="tnum font-semibold">{{ store.totalFcfa ? fcfa(store.totalFcfa) : '' }}</span>
+        </button>
         <FormTitulaire :busy="holderBusy" :error="holderError" @submit="submitHolder" />
       </div>
 
-      <!-- Etape 5: paiement -->
-      <PaiementMobileMoney v-else-if="store.step === 'paiement'" @paid="onPaid" @back="backFromPayment" />
+      <!-- Etape 4: paiement -->
+      <div v-else-if="store.step === 'paiement'" class="grid grid-cols-[minmax(0,1fr)] gap-6">
+        <button
+          type="button"
+          class="surface flex w-full items-center justify-between px-4 py-3 text-left lg:hidden"
+          @click="ticketSheet?.showModal()"
+        >
+          <span class="flex items-center gap-2 font-semibold"><Icon name="lucide:ticket" class="size-4" />{{ $t('booking.yourTicket') }}</span>
+          <span class="tnum font-semibold">{{ store.totalFcfa ? fcfa(store.totalFcfa) : '' }}</span>
+        </button>
+        <PaiementMobileMoney @paid="onPaid" @back="backFromPayment" />
+      </div>
 
-      <!-- Etape 6: billet -->
-      <div v-else class="grid gap-8">
-        <div class="max-w-xl">
-          <span class="grid size-14 place-items-center rounded-full bg-success text-success-content">
-            <Icon name="lucide:check" class="size-8" />
-          </span>
-          <h1 class="display mt-4 text-3xl sm:text-4xl">{{ $t('done.title') }}</h1>
-          <p class="mt-3 text-muted">{{ $t('done.text') }}</p>
+      <!-- Billet -->
+      <div v-else class="grid grid-cols-[minmax(0,1fr)] gap-5">
+        <div class="flex items-center gap-3">
+          <span class="grid size-11 shrink-0 place-items-center rounded-full bg-success text-success-content"><Icon name="lucide:check" class="size-6" /></span>
+          <div>
+            <h1 class="display text-2xl sm:text-3xl">{{ $t('done.title') }}</h1>
+            <p class="text-sm text-muted">{{ $t('done.textShort') }}</p>
+          </div>
         </div>
 
         <div v-if="tickets.length > 1" class="flex gap-2" role="tablist">
@@ -530,41 +531,31 @@ const stepTitle = computed(() => {
             type="button"
             role="tab"
             :aria-selected="activeTicket === i"
-            class="btn btn-sm"
-            :class="activeTicket === i ? 'btn-neutral' : 'btn-outline'"
+            class="rounded-full px-4 py-2 text-sm font-semibold transition-colors"
+            :class="activeTicket === i ? 'bg-base-content text-base-100' : 'bg-base-200'"
             @click="activeTicket = i"
           >
             {{ i === 0 ? $t('booking.outbound') : $t('booking.inbound') }}
           </button>
         </div>
-        <div
-          v-if="tickets[activeTicket]"
-          :style="{ animation: 'ticket-print 0.9s var(--ease-route) both' }"
-        >
-          <TicketPanel
-            :ticket="tickets[activeTicket]!"
-            :token="store.result?.bookings[activeTicket]?.accessToken"
-            actions
-            stamp-animate
-          />
+        <div v-if="tickets[activeTicket]" :style="{ animation: 'rise-in 0.7s var(--ease-route) both' }">
+          <TicketPanel :ticket="tickets[activeTicket]!" :token="store.result?.bookings[activeTicket]?.accessToken" actions stamp-animate />
         </div>
         <div v-else class="surface p-6">
           <p class="font-semibold">{{ $t('done.fetchFailed') }}</p>
           <NuxtLinkLocale to="/mon-voyage" class="btn btn-primary btn-sm mt-3">{{ $t('nav.myTrip') }}</NuxtLinkLocale>
         </div>
 
-        <div class="mx-auto flex w-full max-w-xl flex-wrap gap-2">
-          <button type="button" class="btn btn-outline" @click="newBooking">
-            <Icon name="lucide:plus" class="size-5" />{{ $t('done.again') }}
-          </button>
-          <NuxtLinkLocale to="/" class="btn btn-ghost">{{ $t('done.home') }}</NuxtLinkLocale>
+        <div class="flex flex-wrap gap-2">
+          <button type="button" class="btn btn-outline btn-sm" @click="newBooking"><Icon name="lucide:plus" class="size-4" />{{ $t('done.again') }}</button>
+          <NuxtLinkLocale to="/" class="btn btn-ghost btn-sm">{{ $t('done.home') }}</NuxtLinkLocale>
         </div>
       </div>
     </div>
 
-    <!-- Billet en cours (bureau) -->
+    <!-- Recapitulatif (bureau) -->
     <aside v-if="showAside" class="hidden lg:block" :aria-label="$t('booking.yourTicket')">
-      <div class="sticky top-32">
+      <div class="sticky top-24">
         <BilletEnCours />
         <p class="mt-4 flex items-start gap-2 text-sm text-muted">
           <Icon name="lucide:shield-check" class="mt-0.5 size-4 shrink-0" />{{ $t('booking.reassure') }}
@@ -572,7 +563,7 @@ const stepTitle = computed(() => {
       </div>
     </aside>
 
-    <!-- Billet en cours (mobile) -->
+    <!-- Recapitulatif (mobile) -->
     <dialog ref="ticketSheet" class="modal modal-bottom">
       <div class="modal-box bg-base-200">
         <BilletEnCours />
@@ -584,13 +575,12 @@ const stepTitle = computed(() => {
     <!-- Selection expiree -->
     <dialog ref="expiredDlg" class="modal modal-bottom sm:modal-middle" @cancel.prevent>
       <div class="modal-box">
-        <Icon name="lucide:hourglass" class="size-8 text-dla" />
-        <h2 class="display mt-3 text-3xl">{{ $t('booking.expiredTitle') }}</h2>
+        <Icon name="lucide:hourglass" class="size-8 text-dla-ink" />
+        <h2 class="display mt-3 text-2xl">{{ $t('booking.expiredTitle') }}</h2>
         <p class="mt-3 text-muted">{{ $t('booking.expiredText') }}</p>
         <div class="modal-action flex-wrap">
           <button type="button" class="btn btn-primary" :disabled="resuming" @click="resumeSeats">
-            <Icon v-if="resuming" name="lucide:loader" class="size-5 animate-spin" />
-            {{ $t('booking.resume') }}
+            <Icon v-if="resuming" name="lucide:loader" class="size-5 animate-spin" />{{ $t('booking.resume') }}
           </button>
           <button type="button" class="btn btn-ghost" @click="chooseAgain">{{ $t('booking.chooseAgain') }}</button>
         </div>

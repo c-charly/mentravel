@@ -19,11 +19,8 @@ const pairs: [CityId, CityId][] = [
 const soft: Record<CityId, string> = { yaounde: 'var(--yde-soft)', douala: 'var(--dla-soft)', kribi: 'var(--kri-soft)' }
 const dot: Record<CityId, string> = { yaounde: 'var(--yde)', douala: 'var(--dla)', kribi: 'var(--kri)' }
 const info = (a: CityId, b: CityId) => ROUTES.find((r) => r.from === a && r.to === b)!
+const nextCity: Record<CityId, CityId> = { yaounde: 'douala', douala: 'kribi', kribi: 'douala' }
 const lineStops: CityId[] = ['yaounde', 'douala', 'kribi']
-const lineLegs = computed(() => [
-  `${info('yaounde', 'douala').km} km, ${duration(info('yaounde', 'douala').durationMin)}`,
-  `${info('douala', 'kribi').km} km, ${duration(info('douala', 'kribi').durationMin)}`,
-])
 const minFare = (c: (typeof CLASS_IDS)[number]) => Math.min(...ROUTES.map((r) => fareFor(r.from, r.to, c).one))
 const tone = { yde: 'var(--yde-soft)', dla: 'var(--dla-soft)', kri: 'var(--kri-soft)' } as const
 const toneInk = { yde: 'var(--yde-ink)', dla: 'var(--dla-ink)', kri: 'var(--kri-ink)' } as const
@@ -34,30 +31,21 @@ const toneInk = { yde: 'var(--yde-ink)', dla: 'var(--dla-ink)', kri: 'var(--kri-
     <!-- Hero -->
     <section class="hero-soft -mt-16 pt-16">
       <div class="mx-auto max-w-7xl px-5 pb-16 pt-14 sm:px-8 sm:pt-20 lg:pb-24">
-        <div class="grid items-center gap-12 lg:grid-cols-[1.35fr_0.65fr]">
+        <div class="grid items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
             <span class="chip surface !shadow-none"><i class="size-2 rounded-full bg-secondary" />{{ loc(HOME.badge) }}</span>
             <h1 class="display mt-6 text-[clamp(2.25rem,5vw,4rem)] leading-[1.04] tracking-[-0.04em]">{{ loc(HOME.heroTitle) }}</h1>
             <p class="t-sub mt-6 max-w-xl text-muted">{{ loc(HOME.heroLead) }}</p>
           </div>
-          <div class="surface hidden p-6 lg:block" aria-hidden="true">
-            <p class="text-sm font-medium text-muted">{{ $t('home.lineTitle') }}</p>
-            <ol class="mt-5">
-              <li v-for="(id, i) in lineStops" :key="id" class="relative flex gap-4 pb-7 last:pb-0">
-                <span v-if="i < lineStops.length - 1" class="absolute left-[0.4rem] top-5 h-[calc(100%-0.5rem)] w-px bg-base-300" />
-                <span class="relative mt-1.5 size-3.5 shrink-0 rounded-full ring-4 ring-base-100" :style="{ background: dot[id] }" />
-                <span class="min-w-0">
-                  <span class="block font-semibold leading-tight">{{ city(id) }}</span>
-                  <span class="block text-sm text-muted">{{ CITIES[id].agency }}</span>
-                  <span v-if="i < lineStops.length - 1" class="mt-2 inline-block rounded-full bg-base-200 px-2.5 py-0.5 text-xs font-semibold">{{ lineLegs[i] }}</span>
-                </span>
-              </li>
-            </ol>
-            <ul class="mt-6 flex flex-wrap gap-2 border-t border-line pt-5">
-              <li v-for="a in ['wifi', 'ac', 'usb']" :key="a" class="chip"><Icon :name="EQUIPMENTS[a]!.icon" class="size-3.5" />{{ loc(EQUIPMENTS[a]!.label) }}</li>
-            </ul>
+          <div class="relative hidden lg:block">
+            <MediaFrame id="hero-road" rounded class="border border-line" />
+            <div class="surface absolute -bottom-5 -left-6 flex items-center gap-3 px-4 py-3">
+              <span class="grid size-9 place-items-center rounded-xl bg-secondary/20"><Icon name="lucide:wifi" class="size-[1.1rem]" /></span>
+              <span class="text-sm font-semibold leading-tight">{{ $t('home.onboardChip') }}<br /><span class="font-normal text-muted">{{ $t('home.onboardChipSub') }}</span></span>
+            </div>
           </div>
         </div>
+        <MediaFrame id="hero-road" rounded class="mt-8 border border-line lg:hidden" />
         <div class="mt-12 max-w-5xl"><HomeSearch /></div>
         <ul class="mt-9 flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted">
           <li v-for="(tr, i) in HOME.trust" :key="i" class="flex items-center gap-2">
@@ -67,8 +55,28 @@ const toneInk = { yde: 'var(--yde-ink)', dla: 'var(--dla-ink)', kri: 'var(--kri-
       </div>
     </section>
 
+    <!-- Trois villes -->
+    <section class="mx-auto max-w-7xl px-5 pt-24 sm:px-8">
+      <h2 class="display t-title">{{ loc(HOME.citiesTitle) }}</h2>
+      <p class="mt-3 max-w-xl text-muted">{{ loc(HOME.citiesLead) }}</p>
+      <ul class="mt-10 grid gap-5 md:grid-cols-3">
+        <li v-for="id in lineStops" :key="id">
+          <NuxtLinkLocale :to="{ path: '/reserver', query: { de: id, vers: nextCity[id], etape: 'date' } }" class="group relative block overflow-hidden rounded-3xl">
+            <MediaFrame :id="`city-${id}`" class="transition-transform duration-700 ease-route group-hover:scale-[1.03]" />
+            <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 via-black/25 to-transparent p-5 pt-16 text-white">
+              <h3 class="display text-2xl">{{ city(id) }}</h3>
+              <p class="mt-1 text-sm text-white/85">{{ loc(CITIES[id].tagline) }}</p>
+              <span class="mt-4 inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-semibold text-[#0b1b2b]">
+                {{ $t('home.leaveFrom', { city: city(id) }) }}<Icon name="lucide:arrow-right" class="size-4" />
+              </span>
+            </div>
+          </NuxtLinkLocale>
+        </li>
+      </ul>
+    </section>
+
     <!-- Lignes populaires -->
-    <section class="mx-auto max-w-7xl px-5 py-20 sm:px-8">
+    <section class="mx-auto max-w-7xl px-5 py-24 sm:px-8">
       <div class="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h2 class="display t-title">{{ loc(HOME.routesTitle) }}</h2>
@@ -107,7 +115,9 @@ const toneInk = { yde: 'var(--yde-ink)', dla: 'var(--dla-ink)', kri: 'var(--kri-
         <h2 class="display t-title">{{ loc(HOME.classesTitle) }}</h2>
         <p class="mt-3 max-w-xl text-muted">{{ loc(HOME.classesLead) }}</p>
         <ul class="mt-10 grid gap-5 md:grid-cols-3">
-          <li v-for="c in CLASS_IDS" :key="c" class="surface flex flex-col p-6">
+          <li v-for="c in CLASS_IDS" :key="c" class="surface flex flex-col overflow-hidden">
+            <MediaFrame :id="`class-${c}`" />
+            <div class="flex flex-1 flex-col p-6">
             <div class="flex items-center justify-between">
               <span class="chip"><ClassMark :id="c" swatch />{{ loc(CLASSES[c].tier) }}</span>
               <span class="mono text-sm text-muted">{{ CLASSES[c].layoutLabel }}</span>
@@ -122,6 +132,7 @@ const toneInk = { yde: 'var(--yde-ink)', dla: 'var(--dla-ink)', kri: 'var(--kri-
             <div class="mt-6 flex items-center justify-between border-t border-line pt-5">
               <p><span class="text-sm text-muted">{{ loc(HOME.fromLabel) }}</span> <span class="display tnum text-xl">{{ fcfa(minFare(c)) }}</span></p>
               <NuxtLinkLocale :to="{ path: '/reserver', query: { etape: 'date' } }" class="btn btn-outline btn-sm">{{ loc(HOME.chooseClass) }}</NuxtLinkLocale>
+            </div>
             </div>
           </li>
         </ul>
@@ -166,7 +177,7 @@ const toneInk = { yde: 'var(--yde-ink)', dla: 'var(--dla-ink)', kri: 'var(--kri-
           <NuxtLinkLocale to="/mon-voyage" class="btn btn-outline">{{ loc(HOME.tripCta) }}</NuxtLinkLocale>
         </div>
       </div>
-      <div class="mx-auto w-full max-w-sm rounded-[1.75rem] bg-white p-6 text-[#0b1b2b] shadow-[var(--shadow-lift)] ring-1 ring-black/5">
+      <div class="mx-auto w-full max-w-sm rounded-[1.75rem] bg-white p-6 text-[#0b1b2b] ring-1 ring-black/5">
         <div class="flex items-start justify-between gap-3">
           <div>
             <p class="text-xs text-slate-500">PNR</p>

@@ -42,7 +42,7 @@ async function loadNext() {
       .filter((d) => !d.departed)
       .map((d) => ({ time: d.departureTime, left: d.offers.reduce((s, o) => s + o.left, 0) }))
       .filter((d) => d.left > 0)
-      .slice(0, 5)
+      .slice(0, 4)
   } catch {
     next.value = []
   }

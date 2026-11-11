@@ -15,6 +15,8 @@ export const HOME = {
     { icon: 'lucide:badge-check', text: L('Billet vérifiable en quelques secondes', 'Ticket verifiable in seconds') },
     { icon: 'lucide:wifi', text: L('Wi-Fi et prises USB à bord', 'Wi-Fi and USB sockets on board') },
   ],
+  citiesTitle: L('Trois villes, une seule ligne', 'Three cities, one line'),
+  citiesLead: L('Chaque ville a son caractère. Choisissez celle où commence votre voyage.', 'Every city has its own character. Pick the one where your trip begins.'),
   routesTitle: L('Les lignes les plus demandées', 'Most popular lines'),
   routesLead: L('Trois villes, des départs tous les jours, dans les deux sens.', 'Three cities, daily departures, both ways.'),
   fromLabel: L('à partir de', 'from'),

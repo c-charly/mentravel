@@ -32,40 +32,40 @@ const availability = computed(() => props.ticket.availability)
 </script>
 
 <template>
-  <div class="grid gap-8">
+  <div class="grid gap-6">
     <Billet ref="billet" :ticket="ticket" :stamp-animate="stampAnimate" />
 
-    <div v-if="actions && isFull" class="mx-auto grid w-full max-w-xl gap-3">
-      <div class="grid gap-2 sm:grid-cols-2">
-        <button type="button" class="btn btn-primary" :disabled="busy" @click="savePdf(ticket.pnr)">
-          <Icon name="lucide:file-down" class="size-5" />{{ $t('ticket.downloadPdf') }}
+    <div v-if="actions && isFull" class="mx-auto grid w-full max-w-[44rem] gap-2">
+      <div class="grid grid-cols-5 gap-2">
+        <button type="button" class="btn btn-primary btn-sm flex-col gap-0.5 !h-auto !min-h-14 !rounded-2xl px-1 text-xs" :disabled="busy" @click="savePdf(ticket.pnr)">
+          <Icon name="lucide:file-down" class="size-5" />{{ $t('ticket.actionPdf') }}
         </button>
-        <button type="button" class="btn btn-outline" :disabled="busy" @click="savePng(ticket.pnr)">
-          <Icon name="lucide:image-down" class="size-5" />{{ $t('ticket.downloadImage') }}
+        <button type="button" class="btn btn-outline btn-sm flex-col gap-0.5 !h-auto !min-h-14 !rounded-2xl px-1 text-xs" :disabled="busy" @click="savePng(ticket.pnr)">
+          <Icon name="lucide:image-down" class="size-5" />{{ $t('ticket.actionImage') }}
         </button>
-        <button type="button" class="btn btn-success" :disabled="busy" @click="shareWhatsapp(ticket.pnr, link)">
-          <Icon name="simple-icons:whatsapp" class="size-5" />{{ $t('ticket.shareWhatsapp') }}
+        <button type="button" class="btn btn-outline btn-sm flex-col gap-0.5 !h-auto !min-h-14 !rounded-2xl px-1 text-xs" :disabled="busy" @click="shareWhatsapp(ticket.pnr, link)">
+          <Icon name="simple-icons:whatsapp" class="size-5" />{{ $t('ticket.actionWhatsapp') }}
         </button>
-        <button type="button" class="btn btn-outline" @click="copyLink(link)">
-          <Icon name="lucide:copy" class="size-5" />{{ $t('ticket.copyLink') }}
+        <button type="button" class="btn btn-outline btn-sm flex-col gap-0.5 !h-auto !min-h-14 !rounded-2xl px-1 text-xs" @click="copyLink(link)">
+          <Icon name="lucide:copy" class="size-5" />{{ $t('ticket.actionLink') }}
+        </button>
+        <button
+          type="button"
+          class="btn btn-outline btn-sm flex-col gap-0.5 !h-auto !min-h-14 !rounded-2xl px-1 text-xs"
+          @click="addToCalendar(ticket, `${city(ticket.route.fromCity)} - ${city(ticket.route.toCity)}`, ticket.route.boardingPoint)"
+        >
+          <Icon name="lucide:calendar-plus" class="size-5" />{{ $t('ticket.actionCalendar') }}
         </button>
       </div>
-      <button
-        type="button"
-        class="btn btn-ghost"
-        @click="addToCalendar(ticket, `${city(ticket.route.fromCity)} - ${city(ticket.route.toCity)}`, ticket.route.boardingPoint)"
-      >
-        <Icon name="lucide:calendar-plus" class="size-5" />{{ $t('ticket.addCalendar') }}
-      </button>
       <p v-if="message" class="text-center text-sm font-semibold text-success" role="status">{{ message }}</p>
     </div>
 
-    <section v-if="journey" class="mx-auto w-full max-w-xl" :aria-label="$t('journey.title')">
+    <section v-if="journey" class="mx-auto w-full max-w-[44rem]" :aria-label="$t('journey.title')">
       <h2 class="display mb-5 text-xl">{{ $t('journey.title') }}</h2>
       <FilVoyage :stage="ticket.stage" />
     </section>
 
-    <section v-if="plan" class="mx-auto w-full max-w-xl" :aria-label="$t('plan.label')">
+    <section v-if="plan" class="mx-auto w-full max-w-[44rem]" :aria-label="$t('plan.label')">
       <h2 class="display mb-1 text-xl">{{ $t('verify.yourSeats') }}</h2>
       <p class="mb-4 text-muted">{{ CLASSES[ticket.classId].name }}, {{ dateLong(ticket.date) }}, {{ ticket.departureTime }}</p>
       <PlanBus :layout="layout" :seats="seatsForPlan" :class-id="ticket.classId" :highlight="ticket.seatIds" readonly />
