@@ -133,7 +133,7 @@ const patClass = (c: ClassId) => (c === 'business' ? 'pat-business' : c === 'mas
         <h3 class="mb-2.5 flex items-center gap-2 text-sm font-semibold text-muted">
           <Icon :name="g.icon" class="size-4" />{{ $t(`schedule.period.${g.key}`) }}
         </h3>
-        <ul class="grid gap-3">
+        <ul v-stagger="{ each: 0.06, y: 18, duration: 0.55, start: 'top 96%' }" class="grid gap-3">
           <li v-for="d in g.items" :key="d.id" class="surface p-4">
             <div class="grid gap-4 md:grid-cols-[11.5rem_1fr] md:items-center">
               <div class="flex items-center gap-2">

@@ -319,6 +319,53 @@ a {
   scrollbar-color: color-mix(in oklab, var(--color-base-content) 25%, transparent) transparent;
 }
 
+/* Animations GSAP: etat initial (avant l'apparition), applique seulement si JavaScript est actif et si le
+   mouvement est autorise. Le script du <head> pose "js", puis "anim-off" si le mouvement est reduit ou si
+   GSAP tarde plus de 3 secondes: le contenu est alors affiche tel quel, sans animation. */
+html.js:not(.anim-off) [data-reveal]:not([data-reveal-done]) {
+  opacity: 0;
+}
+html.js:not(.anim-off) [data-stagger]:not([data-stagger-done]) > * {
+  opacity: 0;
+}
+/* Mots masques par visibility et non par transform: GSAP relirait un transform CSS comme position de depart */
+html.js:not(.anim-off) [data-split]:not([data-split-done]) .reveal-word {
+  visibility: hidden;
+}
+html.js:not(.anim-off) [data-fade]:not([data-fade-done]) {
+  opacity: 0;
+}
+html.js:not(.anim-off) [data-draw]:not([data-draw-done]) {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+@media print {
+  [data-reveal],
+  [data-stagger] > *,
+  [data-split] .reveal-word {
+    visibility: visible !important;
+    transform: none !important;
+  }
+}
+
+/* Texte revele mot par mot: le masque coupe le mot qui monte; le padding negatif evite de rogner
+   les jambages et les accents quand l'interligne est serre */
+.word-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-block: 0.14em;
+  margin-block: -0.14em;
+}
+.reveal-word {
+  display: inline-block;
+}
+
+/* Un <details> en cours de fermeture garde son icone alignee sur l'animation */
+details.is-closing .group-open\:rotate-45 {
+  rotate: 0deg;
+}
+
 /* Transitions de vue: le jour choisi glisse vers la liste des horaires */
 ::view-transition-old(root),
 ::view-transition-new(root) {

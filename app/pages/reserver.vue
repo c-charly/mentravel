@@ -347,6 +347,11 @@ watch(
 )
 
 const showAside = computed(() => store.step !== 'billet')
+
+// Entree douce a chaque changement d'ecran (date et horaire forment un seul ecran; le billet a sa propre entree)
+const stepRoot = ref<HTMLElement | null>(null)
+const screen = computed(() => (store.step === 'date' || store.step === 'horaire' ? 'depart' : store.step))
+useStepEnter(stepRoot, () => screen.value, (now) => now === 'billet')
 const stepTitle = computed(() => {
   const s = store.step
   if (s === 'date') return legIdx.value === 1 ? t('booking.titleReturn') : t('booking.titleDate')
@@ -360,7 +365,7 @@ const stepTitle = computed(() => {
 
 <template>
   <div class="mx-auto px-5 pb-32 pt-7" :class="showAside ? 'max-w-6xl lg:grid lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-12' : 'max-w-3xl'">
-    <div class="min-w-0">
+    <div ref="stepRoot" class="min-w-0">
       <h2 ref="heading" tabindex="-1" class="sr-only">{{ stepTitle }}</h2>
 
       <!-- Etape 1: depart (jour + classe) -->

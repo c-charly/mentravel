@@ -33,10 +33,10 @@ function open(p: string) {
 
 <template>
   <div>
-    <h1 class="display text-3xl sm:text-4xl">{{ $t('trip.title') }}</h1>
-    <p class="mt-4 max-w-xl text-muted">{{ $t('trip.intro') }}</p>
+    <h1 v-reveal.now class="display text-3xl sm:text-4xl">{{ $t('trip.title') }}</h1>
+    <p v-reveal.now="{ delay: 0.1 }" class="mt-4 max-w-xl text-muted">{{ $t('trip.intro') }}</p>
 
-    <form class="mt-8 grid max-w-xl gap-4" novalidate @submit.prevent="submit">
+    <form v-reveal.now="{ delay: 0.2 }" class="mt-8 grid max-w-xl gap-4" novalidate @submit.prevent="submit">
       <label>
         <span class="mb-1.5 block font-semibold">{{ $t('verify.pnrLabel') }}</span>
         <input

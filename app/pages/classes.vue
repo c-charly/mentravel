@@ -17,7 +17,7 @@ const minFare = (c: (typeof CLASS_IDS)[number]) => Math.min(...ROUTES.map((r) =>
     <PageHeader :title="loc(CLASSES_PAGE.title)" :lead="loc(CLASSES_PAGE.lead)" />
 
     <div class="mx-auto max-w-7xl px-5 pb-24 sm:px-8">
-      <ul class="grid gap-5 lg:grid-cols-3">
+      <ul v-stagger="{ each: 0.15, y: 52 }" class="grid gap-5 lg:grid-cols-3">
         <li v-for="id in CLASS_IDS" :key="id" class="surface flex flex-col overflow-hidden">
           <div class="p-6 pb-5" :style="{ background: tones[id] }">
             <div class="flex items-center justify-between">
@@ -48,7 +48,7 @@ const minFare = (c: (typeof CLASS_IDS)[number]) => Math.min(...ROUTES.map((r) =>
       </ul>
 
       <section class="mt-20">
-        <h2 class="display t-title">{{ loc(CLASSES_PAGE.compare) }}</h2>
+        <h2 v-reveal class="display t-title">{{ loc(CLASSES_PAGE.compare) }}</h2>
         <div class="surface mt-8 overflow-x-auto">
           <table class="w-full min-w-[34rem] border-collapse text-left">
             <caption class="sr-only">{{ loc(CLASSES_PAGE.compare) }}</caption>
@@ -58,7 +58,7 @@ const minFare = (c: (typeof CLASS_IDS)[number]) => Math.min(...ROUTES.map((r) =>
                 <th v-for="c in CLASS_IDS" :key="c" scope="col" class="px-4 py-4 font-semibold text-base-content">{{ CLASSES[c].name }}</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody v-stagger="{ each: 0.04, y: 14, duration: 0.5, start: 'top 92%' }">
               <tr v-for="e in allEquip" :key="e" class="border-b border-line last:border-0">
                 <th scope="row" class="flex items-center gap-2.5 px-6 py-3.5 font-medium">
                   <Icon :name="EQUIPMENTS[e]!.icon" class="size-4 text-muted" />{{ loc(EQUIPMENTS[e]!.label) }}

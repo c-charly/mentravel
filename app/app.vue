@@ -9,7 +9,15 @@ useHead({
   },
   link: computed(() => i18nHead.value.link ?? []),
   meta: computed(() => i18nHead.value.meta ?? []),
-  script: [{ innerHTML: "document.documentElement.classList.add('js')", tagPosition: 'head' }],
+  // "js": JavaScript actif. "anim-off": pas d'animation (mouvement reduit, ou GSAP pas pret apres 3 s,
+  // typiquement sur une connexion lente): le CSS n'a alors rien a masquer et la page s'affiche telle quelle.
+  script: [
+    {
+      innerHTML:
+        "(function(d){var c=d.documentElement.classList;c.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches){c.add('anim-off');return}setTimeout(function(){if(!c.contains('anim-on'))c.add('anim-off')},3000)})(document)",
+      tagPosition: 'head',
+    },
+  ],
 })
 </script>
 

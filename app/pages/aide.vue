@@ -44,7 +44,7 @@ useHead({
     <PageHeader :title="$t('help.title')" :lead="$t('help.lead')" />
 
     <div class="mx-auto max-w-7xl px-5 pb-24 sm:px-8">
-      <div class="grid gap-4 sm:grid-cols-3">
+      <div v-stagger="{ each: 0.1, y: 28 }" class="grid gap-4 sm:grid-cols-3">
         <a :href="`https://wa.me/${BRAND.whatsapp}`" target="_blank" rel="noopener" class="surface flex items-center gap-4 p-5 transition-shadow hover:shadow-[var(--shadow-lift)]">
           <span class="grid size-11 place-items-center rounded-2xl bg-[#1fa855] text-white"><Icon name="simple-icons:whatsapp" class="size-5" /></span>
           <span><span class="block font-semibold">WhatsApp</span><span class="text-sm text-muted">{{ loc(BRAND.hours) }}</span></span>
@@ -60,7 +60,7 @@ useHead({
       </div>
 
       <div class="mt-16 max-w-3xl">
-        <label class="block">
+        <label v-reveal class="block">
           <span class="mb-2 block font-semibold">{{ $t('help.search') }}</span>
           <span class="input flex w-full items-center gap-2.5">
             <Icon name="lucide:search" class="size-5 shrink-0 text-muted" />
@@ -72,7 +72,7 @@ useHead({
         <div v-for="g in groups" :key="g.id" class="mt-12">
           <h2 class="display text-xl">{{ loc(FAQ_GROUPS[g.id]) }}</h2>
           <div class="mt-3 divide-y divide-[var(--line)] border-y border-line">
-            <details v-for="f in g.items" :key="f.id" class="group py-5">
+            <details v-for="f in g.items" :key="f.id" v-accordion class="group py-5">
               <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-semibold">
                 {{ loc(f.q) }}
                 <Icon name="lucide:plus" class="size-5 shrink-0 text-muted transition-transform group-open:rotate-45" />

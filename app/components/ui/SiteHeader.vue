@@ -24,12 +24,12 @@ const onBooking = computed(() => route.path.includes('/reserver'))
       :class="scrolled ? 'border-line bg-base-100/80 backdrop-blur-xl' : 'border-transparent bg-transparent'"
     >
       <div class="mx-auto flex h-16 max-w-7xl items-center gap-6 px-5 sm:px-8">
-        <NuxtLink :to="localePath('/')" :aria-label="$t('nav.home')" class="shrink-0">
+        <NuxtLink v-reveal.down.now :to="localePath('/')" :aria-label="$t('nav.home')" class="shrink-0">
           <BrandMark mobile/>
         </NuxtLink>
 
         <nav class="hidden lg:block" :aria-label="$t('nav.main')">
-          <ul class="flex items-center gap-0.5">
+          <ul v-stagger.down.now="{ delay: 0.15, each: 0.05, y: -14 }" class="flex items-center gap-0.5">
             <li v-for="l in links" :key="l.to">
               <NuxtLink
                 :to="localePath(l.to)"
@@ -42,7 +42,7 @@ const onBooking = computed(() => route.path.includes('/reserver'))
           </ul>
         </nav>
 
-        <div class="ml-auto flex items-center gap-1.5">
+        <div v-reveal.down.now="{ delay: 0.3, y: -14 }" class="ml-auto flex items-center gap-1.5">
           <NuxtLink
             :to="localePath('/mon-voyage')"
             class="btn btn-ghost btn-sm hidden min-h-9 gap-2 text-muted hover:text-base-content md:inline-flex"
@@ -64,6 +64,7 @@ const onBooking = computed(() => route.path.includes('/reserver'))
         </div>
       </div>
     </div>
+    <ScrollProgress />
     <SiteMenu ref="menu" />
   </header>
 </template>

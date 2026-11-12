@@ -118,6 +118,10 @@ watch(step, async () => {
   await nextTick()
   heading.value?.focus({ preventScroll: true })
 })
+
+// Entree douce a chaque etape du tunnel
+const stepRoot = ref<HTMLElement | null>(null)
+useStepEnter(stepRoot, () => step.value)
 </script>
 
 <template>
@@ -130,7 +134,7 @@ watch(step, async () => {
 
     <div class="mx-auto max-w-7xl px-5 pb-24 sm:px-8">
       <div class="grid gap-12 lg:grid-cols-[1fr_21rem]">
-        <div>
+        <div ref="stepRoot">
           <h2 ref="heading" tabindex="-1" class="sr-only">{{ $t(`charter.q.${step}`) }}</h2>
 
           <!-- Type de course -->
@@ -249,7 +253,7 @@ watch(step, async () => {
         </div>
 
         <!-- Estimation en direct -->
-        <aside v-if="step !== 'kind' && step !== 'done'" :aria-label="$t('charter.estimateTitle')">
+        <aside v-if="step !== 'kind' && step !== 'done'" v-reveal.left="{ x: 36 }" :aria-label="$t('charter.estimateTitle')">
           <div class="surface sticky top-24 p-6" aria-live="polite">
             <p class="text-sm text-muted">{{ $t('charter.estimateTitle') }}</p>
             <p class="display tnum mt-2 text-2xl">{{ fcfa(estimate.minFcfa) }}<br />{{ $t('charter.to') }} {{ fcfa(estimate.maxFcfa) }}</p>

@@ -2,7 +2,8 @@
 // Cadre de visuel: photo reelle si `src` est renseigne dans content/media.ts, sinon un visuel doux de remplacement.
 import { MEDIA } from '~~/content/media'
 
-const props = defineProps<{ id: string; rounded?: boolean }>()
+// `parallax`: le visuel se deplace doucement dans son cadre pendant le defilement (GSAP)
+const props = defineProps<{ id: string; rounded?: boolean; parallax?: boolean }>()
 const { loc } = useL10n()
 const media = computed(() => MEDIA[props.id])
 const tones: Record<string, { bg: string; ink: string }> = {
@@ -22,6 +23,7 @@ const tones: Record<string, { bg: string; ink: string }> = {
   >
     <img
       v-if="media.src"
+      v-parallax="parallax ? {} : false"
       :src="media.src"
       :alt="loc(media.alt)"
       loading="lazy"
@@ -30,6 +32,7 @@ const tones: Record<string, { bg: string; ink: string }> = {
     />
     <div
       v-else
+      v-parallax="parallax ? {} : false"
       class="absolute inset-0 grid place-items-center"
       :style="{ background: `linear-gradient(145deg, ${tones[media.tone]!.bg}, var(--color-base-200))`, color: tones[media.tone]!.ink }"
       role="img"

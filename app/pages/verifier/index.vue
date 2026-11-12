@@ -22,9 +22,9 @@ async function submit() {
 
 <template>
   <div class="mx-auto max-w-xl">
-    <h1 class="display text-3xl sm:text-4xl">{{ $t('verify.title') }}</h1>
-    <p class="mt-4 text-muted">{{ $t('verify.intro') }}</p>
-    <form class="mt-8 grid gap-4" novalidate @submit.prevent="submit">
+    <h1 v-reveal.now class="display text-3xl sm:text-4xl">{{ $t('verify.title') }}</h1>
+    <p v-reveal.now="{ delay: 0.1 }" class="mt-4 text-muted">{{ $t('verify.intro') }}</p>
+    <form v-reveal.now="{ delay: 0.2 }" class="mt-8 grid gap-4" novalidate @submit.prevent="submit">
       <label>
         <span class="mb-1.5 block font-semibold">{{ $t('verify.pnrLabel') }}</span>
         <input

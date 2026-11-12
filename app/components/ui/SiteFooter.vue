@@ -42,7 +42,7 @@ const label = (col: string, key: string) =>
   <footer class="border-t border-line bg-base-200/70">
     <div class="mx-auto max-w-7xl px-5 py-14 sm:px-8">
       <div class="grid gap-12 lg:grid-cols-[1.3fr_2fr]">
-        <div>
+        <div v-reveal>
           <BrandMark />
           <p class="mt-4 max-w-xs text-sm leading-relaxed text-muted">{{ loc(BRAND.signature) }}. {{ $t('footer.blurb') }}</p>
           <ul class="mt-6 space-y-2.5 text-sm">
@@ -65,7 +65,7 @@ const label = (col: string, key: string) =>
           </ul>
         </div>
 
-        <div class="grid gap-8 sm:grid-cols-3">
+        <div v-stagger="{ each: 0.12, y: 24 }" class="grid gap-8 sm:grid-cols-3">
           <div v-for="col in columns" :key="col.key">
             <h2 class="text-sm font-semibold">{{ $t(`footer.${col.key}`) }}</h2>
             <ul class="mt-4 space-y-2.5 text-sm">
@@ -79,7 +79,7 @@ const label = (col: string, key: string) =>
         </div>
       </div>
 
-      <div class="mt-12 flex flex-col gap-4 border-t border-line pt-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+      <div v-reveal.fade class="mt-12 flex flex-col gap-4 border-t border-line pt-6 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p class="wrap pb-1 text-sm opacity-90">&copy; {{ year }} {{ BRAND.name }}. {{ $t('footer.rights') }}</p>
           <p class="wrap pb-8 text-sm opacity-90"><a href="https://nenxel.com">by Nenxel</a></p>
